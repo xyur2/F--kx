@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://uxg8ndxwqart"]
+
+[ext_resource type="Script" uid="uid://cnxc626m1v6ag" path="res://script/customer.gd" id="1_ty3hb"]
+[ext_resource type="Texture2D" uid="uid://cw7hjnbfbwn63" path="res://asset/customer.png" id="1_vqdmq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ty3hb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vqdmq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Customer" type="Node2D" unique_id=1501992636]
+script = ExtResource("1_ty3hb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=272378064]
+sprite_frames = SubResource("SpriteFrames_ty3hb")
