@@ -15,7 +15,7 @@ func increase_customer():
 func get_goal_customer():
 	return customer_num_goal
 func increase_scream(score):
-	customer_num_now += score
+	scream_score_now += score
 func get_scream():
 	return scream_score_now
 func get_goal_scream():
@@ -29,7 +29,7 @@ func set_goal(yesterday_score, yesterday_customer):
 		object_score = yesterday_customer * 4
 	if yesterday_score <= object_score*0.3:
 		customer_num_goal = yesterday_customer - randi_range(1, 3)
-	elif yesterday_customer <= object_score*0.6:
+	elif yesterday_score <= object_score*0.6:
 		customer_num_goal = yesterday_customer
 	else:
 		customer_num_goal = yesterday_customer + randi_range(1, 3)
