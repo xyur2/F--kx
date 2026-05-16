@@ -75,7 +75,7 @@ func get_graph():
 func _ready():
 	clear_points()
 	# 시작점을 (0,0)으로 설정
-	last_position = Vector2(0,1080)
+	last_position = Vector2(0,1000)
 	add_point(last_position)
 	print(graph_num)
 	
@@ -126,7 +126,7 @@ func _on_main_boost() -> void:
 		now_button += 1
 		if now_button <= get_graph()[0]:
 			max_boost_value=get_graph()[now_button][0] * -10
-			boost_deduction_speed_value = 0.000001 * get_graph()[now_button][1]
+			boost_deduction_speed_value = -0.015 * abs(get_graph()[now_button][1])
 			cur_boost_value = max_boost_value # Godot은 -Y가 위쪽이므로 위로 솟구치게 함
 			print(get_graph()[now_button])
 
@@ -150,4 +150,4 @@ func _on_bungee_button_pressed() -> void:
 	#print(graph_num)
 
 func get_scream_score():
-	return 0.5
+	return (1080-last_position.y)/1080
