@@ -8,44 +8,43 @@
 [node name="Tower" type="Node2D" unique_id=1629670762]
 
 [node name="TowerBackground" type="Sprite2D" parent="." unique_id=639580046]
-position = Vector2(571, 288)
-scale = Vector2(1.5, 1.5)
+position = Vector2(980, 540)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_t5t8u")
 
 [node name="CustomerTalkbox" type="Node2D" parent="." unique_id=2133472042]
-position = Vector2(552, 93.999985)
-scale = Vector2(0.40000004, 0.40000004)
 
 [node name="Talkbox2" type="Sprite2D" parent="CustomerTalkbox" unique_id=647519477]
-position = Vector2(77.5, 565.00006)
-scale = Vector2(0.74999994, 0.74999994)
+position = Vector2(1012.99994, 813)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_jlhg4")
 flip_h = true
 
 [node name="TextEdit2" type="TextEdit" parent="CustomerTalkbox" unique_id=739601971]
-offset_left = -194.99988
-offset_top = 390.0
-offset_right = 347.5
-offset_bottom = 687.5
+offset_left = 804.9999
+offset_top = 664.0
+offset_right = 1347.4998
+offset_bottom = 961.5
+scale = Vector2(0.8, 0.8)
 metadata/_edit_use_anchors_ = true
 
 [node name="MyTalkbox" type="Node2D" parent="." unique_id=1771920793]
 
 [node name="Talkbox" type="Sprite2D" parent="MyTalkbox" unique_id=106114183]
-position = Vector2(552, 94)
-scale = Vector2(0.4, 0.4)
+position = Vector2(1007, 281)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_jlhg4")
 
 [node name="TextEdit" type="TextEdit" parent="MyTalkbox" unique_id=631272642]
-offset_left = 399.0
-offset_top = 1.0
-offset_right = 674.0
-offset_bottom = 154.0
+offset_left = 748.0
+offset_top = 130.0
+offset_right = 1241.0
+offset_bottom = 354.0
 
 [node name="Customer" parent="." unique_id=1501992636 instance=ExtResource("3_upbbx")]
-position = Vector2(873, 473)
-scale = Vector2(0.4, 0.4)
+position = Vector2(1520, 670)
+scale = Vector2(0.6, 0.6)
 
 [node name="Me" parent="." unique_id=780189449 instance=ExtResource("4_tawd1")]
-position = Vector2(258.00006, 363)
-scale = Vector2(0.3, 0.3)
+position = Vector2(500, 600)
+scale = Vector2(0.5, 0.5)
