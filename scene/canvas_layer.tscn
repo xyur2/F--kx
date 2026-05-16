@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bjbdmbela6fa1"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 811.0
+offset_bottom = 440.0
+color = Color(0, 0, 0, 0.16078432)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 40.0
+offset_right = 685.0
+offset_bottom = 313.0
+theme_override_font_sizes/font_size = 200
+text = "Pause"
