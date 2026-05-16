@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b7jn4anbc3cj"]
+
+[ext_resource type="Texture2D" uid="uid://dgpce8shuafvp" path="res://asset/main_2.png" id="1_gbpcu"]
+[ext_resource type="Script" uid="uid://6akto83cd610" path="res://script/start.gd" id="1_xmel7"]
+[ext_resource type="Texture2D" uid="uid://pkya7txl2guq" path="res://asset/main_1.png" id="2_xmel7"]
+
+[node name="Start" type="Node2D" unique_id=113536068]
+script = ExtResource("1_xmel7")
+
+[node name="background" type="Sprite2D" parent="." unique_id=1642170967]
+texture = ExtResource("1_gbpcu")
+
+[node name="background2" type="Sprite2D" parent="." unique_id=1666162994]
+texture = ExtResource("1_gbpcu")
+offset = Vector2(2360, 0)
+flip_h = true
+
+[node name="background3" type="Sprite2D" parent="." unique_id=445828057]
+texture = ExtResource("2_xmel7")
