@@ -6,6 +6,7 @@ var yesterday
 var bungee_pos = Vector2(0, 2000)
 var tower_pos = Vector2(0, 0)
 var start_pos = Vector2(0, 4000)
+var dayend_pos = Vector2(0, 6000)
 var camera
 var customer
 var is_animating = false
@@ -92,11 +93,24 @@ func start_game():
 		yesterday = today
 		today = day.new()
 		today.set_goal(yesterday.get_scream(), yesterday.get_customer())
-		cur.text=today.get_customer()
-		fin.text=today.get_goal_customer()
-		scream.text=today.get_scream()
-		print(i, "일차 완료. 내일 손님 수 : ", today.get_goal_customer())
-		
+		cur.text=str(today.get_customer())
+		fin.text=str(today.get_goal_customer())
+		scream.text=str(today.get_scream())
+		await endday(yesterday.get_scream(), yesterday.get_customer())
+
+func endday(score, customer):
+	camera.offset = dayend_pos
+	var final_score
+	var textbox = get_node("Dayend/Label")
+	if customer == 1:
+		final_score = min(score, 2)/2 * 100
+	else:
+		final_score = min(score, customer*4)/(customer*4)*100
+	var text = "오늘 손님 수 : " + str(customer) + "\n오늘의 점수 : " + str(snapped(final_score, 0.01)) + "점"
+	textbox.text = text
+	await transition.transition_out()         # 닫기
+	await get_tree().create_timer(3.0).timeout
+	await transition.transition_in()         # 열기
 
 func day_process():
 	var customer_num
@@ -132,7 +146,7 @@ func day_process():
 		
 		cur.text=str(today.get_customer())
 		fin.text=str(today.get_goal_customer())
-		scream.text=str(today.get_scream())
+		scream.text=str(snapped(today.get_scream(), 0.01))
 
 		while (line_num_now < line_num_total):
 			await continued
@@ -159,15 +173,22 @@ func day_process():
 		joke_scene.visible = true
 		pointer.position = Vector2(980.0, 540.0)
 		set_shape(bungee_customer_animation, customer.get_shape(), 2)
-		await transition.transition_out()         # 열기
+		
 		
 		# ----------- 장난 선택 장면 --------------
 		joke_me_animation.play("smile")
 		var joke_1 = joke.new()
 		var joke_2 = joke.new()
 		var joke_3 = joke.new()
+		
+		var button1 = get_node("Joke/Button")
+		var button2 = get_node("Joke/Button2")
+		var button3 = get_node("Joke/Button3")
+		button1.text = joke_1.get_joke_name()
+		button2.text = joke_2.get_joke_name()
+		button3.text = joke_3.get_joke_name()
+		await transition.transition_out()         # 열기
 		await button_chosen
-		joke_me_animation.play("default")
 		match chosen_button:
 			1: joke_final = joke_1
 			2: joke_final = joke_2
@@ -265,7 +286,6 @@ func score_bar(score):
 	is_animating = false
 	var personal_score = carculate_score(score, customer.get_personality())
 	today.increase_scream(personal_score)
-	today.increase_customer()
 	emit_signal("fallen")
 
 func set_shape(where, chr, num):

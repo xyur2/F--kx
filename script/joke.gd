@@ -5,6 +5,34 @@ class_name joke
 var joke_num = randi_range(1, 25)
 var lines
 
+func get_joke_name():
+	match joke_num:
+		1: return "낡은 줄"
+		2: return "셋 셀게요"
+		3: return "제가 해드릴게요"
+		4: return "비명 연속"
+		5: return "스릴 넘치게"
+		6: return "직접 경험해보세요"
+		7: return "사진은 그만"
+		8: return "하나도 안 무서워요"
+		9: return "다리가 안 움직여요"
+		10: return "갑니다"
+		11: return "반은 성공"
+		12: return "제일 재밌게"
+		13: return "잠깐만요"
+		14: return "발 밑 풍경"
+		15: return "낡은 줄"
+		16: return "마지막 할 말"
+		17: return "줄을 믿으세요"
+		18: return "식은 땀"
+		19: return "마음의 준비"
+		20: return "줄이 어딨지"
+		21: return "줄이 여기에"
+		22: return "긴 줄"
+		23: return "섄디"
+		24: return "부상자"
+		25: return "사망자"
+
 func get_lines():
 	match joke_num:
 		1:
@@ -118,9 +146,9 @@ func get_lines():
 			]
 		20:
 			lines = [
-				["me", "뛸게요!!"],
-				["customer", "아직 연결 안 됐어..요.."],
-				["me", "으악!!!"]
+				["customer", "뛸게요!!"],
+				["me", "아직 연결 안 됐어..요.."],
+				["customer", "으악!!!"]
 			]
 		21:
 			lines = [

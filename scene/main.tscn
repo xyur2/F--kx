@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dniib04h7sq4u" path="res://scene/transition.tscn" id="5_0ha60"]
 [ext_resource type="PackedScene" uid="uid://b7jn4anbc3cj" path="res://scene/start.tscn" id="5_p1hux"]
 [ext_resource type="Script" uid="uid://cusil41qmoska" path="res://script/transition.gd" id="6_4j5ol"]
+[ext_resource type="FontFile" uid="uid://dpmd0flr32atc" path="res://asset/font_bold.ttf" id="6_b5f6u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p1hux"]
 
@@ -49,16 +50,21 @@ script = null
 position = Vector2(0, 2000)
 
 [node name="Button" parent="Joke" index="1" unique_id=1974009903]
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_b5f6u")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxEmpty_p1hux")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_tqoya")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_k65ib")
+text = "test"
+autowrap_trim_flags = 0
 
-[node name="Button2" parent="Joke" index="2" unique_id=511233706]
+[node name="Button2" parent="Joke" index="2" unique_id=876397740]
 theme_override_styles/normal = SubResource("StyleBoxEmpty_of57s")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_wscrc")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_mswub")
 
-[node name="Button3" parent="Joke" index="3" unique_id=257208690]
+[node name="Button3" parent="Joke" index="3" unique_id=1405512667]
 theme_override_styles/normal = SubResource("StyleBoxEmpty_b5f6u")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_hybxs")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_v2gmf")

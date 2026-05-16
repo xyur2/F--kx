@@ -12,25 +12,35 @@ color = Color(1, 1, 1, 0.34117648)
 polygon = PackedVector2Array(-22, -48, -47, 1151, 2023, 1114, 2041, -85)
 
 [node name="Button" type="Button" parent="." unique_id=1974009903]
-offset_left = 666.0
-offset_top = -18.0
-offset_right = 1271.0
-offset_bottom = 347.0
-icon = ExtResource("1_typl6")
+offset_left = 572.0
+offset_top = 4.0
+offset_right = 1177.0
+offset_bottom = 369.0
 
-[node name="Button2" type="Button" parent="." unique_id=511233706]
-offset_left = 809.0
-offset_top = 377.0
-offset_right = 1205.0
-offset_bottom = 685.0
-icon = ExtResource("2_jj4g0")
+[node name="Sprite2D" type="Sprite2D" parent="Button" unique_id=325032422]
+position = Vector2(300, 186)
+texture = ExtResource("1_typl6")
 
-[node name="Button3" type="Button" parent="." unique_id=257208690]
-offset_left = 717.0
-offset_top = 726.0
-offset_right = 1113.0
-offset_bottom = 1034.0
-icon = ExtResource("3_7ihp2")
+[node name="Button2" type="Button" parent="." unique_id=876397740]
+offset_left = 750.0
+offset_top = 372.0
+offset_right = 1355.0
+offset_bottom = 737.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Button2" unique_id=20137541]
+position = Vector2(304, 179)
+scale = Vector2(1.121673, 1.1070287)
+texture = ExtResource("2_jj4g0")
+
+[node name="Button3" type="Button" parent="." unique_id=1405512667]
+offset_left = 912.0
+offset_top = 730.0
+offset_right = 1517.0
+offset_bottom = 1095.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Button3" unique_id=1781073876]
+position = Vector2(300, 186)
+texture = ExtResource("3_7ihp2")
 
 [node name="Me" parent="." unique_id=780189449 instance=ExtResource("2_vgkxu")]
 position = Vector2(980, 540)
