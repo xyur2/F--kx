@@ -151,3 +151,10 @@ func _on_bungee_button_pressed() -> void:
 
 func get_scream_score():
 	return (1080-last_position.y)/1080
+
+func _on_graph_button_mouse_entered() -> void:
+	pass # Replace with function body.
+
+
+func _on_graph_button_mouse_exited() -> void:
+	pass # Replace with function body.
