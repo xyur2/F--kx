@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://daanmlo268yyd"]
+
+[ext_resource type="Texture2D" uid="uid://dlenbxbwl5sw8" path="res://asset/thinkbox.png" id="1_iej72"]
+[ext_resource type="PackedScene" uid="uid://bq5ol7s0jrkkj" path="res://scene/me.tscn" id="2_vgkxu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vgkxu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dvkme"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_typl6"]
+
+[node name="Joke" type="Node2D" unique_id=834924065]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1820579759]
+color = Color(1, 1, 1, 0.34117648)
+polygon = PackedVector2Array(-22, -48, -47, 1151, 2023, 1114, 2041, -85)
+
+[node name="Button" type="Button" parent="." unique_id=1974009903]
+offset_left = 657.0
+offset_top = 51.0
+offset_right = 1053.0
+offset_bottom = 359.0
+icon = ExtResource("1_iej72")
+
+[node name="thinkbox1" type="AnimatedSprite2D" parent="Button" unique_id=2125764693]
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_vgkxu")
+
+[node name="Button2" type="Button" parent="." unique_id=511233706]
+offset_left = 809.0
+offset_top = 377.0
+offset_right = 1205.0
+offset_bottom = 685.0
+icon = ExtResource("1_iej72")
+
+[node name="thinkbox2" type="AnimatedSprite2D" parent="Button2" unique_id=882891247]
+position = Vector2(283, 306)
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_dvkme")
+
+[node name="Button3" type="Button" parent="." unique_id=257208690]
+offset_left = 717.0
+offset_top = 726.0
+offset_right = 1113.0
+offset_bottom = 1034.0
+icon = ExtResource("1_iej72")
+
+[node name="thinkbox3" type="AnimatedSprite2D" parent="Button3" unique_id=1989766514]
+position = Vector2(154, 643)
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_typl6")
+
+[node name="Me" parent="." unique_id=780189449 instance=ExtResource("2_vgkxu")]
+position = Vector2(500, 600)
+scale = Vector2(0.5, 0.5)
