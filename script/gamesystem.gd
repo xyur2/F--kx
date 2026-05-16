@@ -84,6 +84,7 @@ func start_game():
 		today = day.new()
 		today.set_goal(yesterday.get_scream(), yesterday.get_customer())
 		print(i, "일차 완료. 내일 손님 수 : ", today.get_goal_customer())
+		
 
 func day_process():
 	var customer_num
