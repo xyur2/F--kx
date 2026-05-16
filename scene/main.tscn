@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://trxgahumbk60" path="res://scene/bungee.tscn" id="1_v0l8b"]
 [ext_resource type="Script" uid="uid://djovcydqarqog" path="res://script/gamesystem.gd" id="1_wp4xf"]
 [ext_resource type="PackedScene" uid="uid://dreyytgky8r1w" path="res://scene/tower.tscn" id="2_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://daanmlo268yyd" path="res://scene/joke.tscn" id="4_brvut"]
 
 [node name="Main" type="Node2D" unique_id=2093430170]
 script = ExtResource("1_wp4xf")
@@ -14,3 +15,12 @@ position = Vector2(3000, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=753121178]
 position = Vector2(980, 540)
+
+[node name="Joke" parent="." unique_id=834924065 instance=ExtResource("4_brvut")]
+position = Vector2(3000, 0)
+
+[connection signal="pressed" from="Joke/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Joke/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Joke/Button3" to="." method="_on_button_3_pressed"]
+
+[editable path="Joke"]

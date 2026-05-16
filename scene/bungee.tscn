@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://rdjia7h3en18" path="res://asset/bungee_background.jpg" id="1_2twes"]
 [ext_resource type="PackedScene" uid="uid://uxg8ndxwqart" path="res://scene/customer.tscn" id="3_6ll2o"]
-[ext_resource type="Script" uid="uid://i5yj3gb7nfpc" path="res://script/linetext.gd" id="3_p3fes"]
 [ext_resource type="Texture2D" uid="uid://cbappd0t88pr0" path="res://asset/talkbox.png" id="4_6ll2o"]
 [ext_resource type="PackedScene" uid="uid://bq5ol7s0jrkkj" path="res://scene/me.tscn" id="4_p3fes"]
 
@@ -27,7 +26,11 @@ offset_top = 664.0
 offset_right = 1347.4998
 offset_bottom = 961.5
 scale = Vector2(0.8, 0.8)
-script = ExtResource("3_p3fes")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="MyTalkbox" type="Node2D" parent="." unique_id=779489565]
@@ -42,7 +45,11 @@ offset_left = 748.0
 offset_top = 130.0
 offset_right = 1241.0
 offset_bottom = 354.0
-script = ExtResource("3_p3fes")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Customer" parent="." unique_id=1501992636 instance=ExtResource("3_6ll2o")]
 position = Vector2(1520, 670)
