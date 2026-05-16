@@ -7,6 +7,7 @@ var bungee_pos = Vector2(0, 2000)
 var tower_pos = Vector2(0, 0)
 var start_pos = Vector2(0, 4000)
 var dayend_pos = Vector2(0, 6000)
+var endiing_pos = Vector2(0, 8000)
 var camera
 var customer
 var is_animating = false
@@ -37,6 +38,7 @@ var cur
 var fin 
 var scream 
 var Day
+var ending
 # Called when the node enters the scene tree for the first time.
 
 
@@ -75,7 +77,10 @@ func _ready():
 	# _process 대신 _ready에서 시작
 	if state == "ready":
 		main_scene()
-		
+
+func final_ending(ending):
+	pass
+
 func main_scene():
 	camera.offset = start_pos
 	await continued
@@ -97,6 +102,11 @@ func start_game():
 		fin.text=str(today.get_goal_customer())
 		scream.text=str(today.get_scream())
 		await endday(yesterday.get_scream(), yesterday.get_customer())
+		ending = 2
+		if today.get_goal_customer() <= 0:
+			ending = 1
+			break
+	final_ending(ending)
 
 func endday(score, customer):
 	camera.offset = dayend_pos
