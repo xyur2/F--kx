@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://trxgahumbk60" path="res://scene/bungee.tscn" id="1_v0l8b"]
 [ext_resource type="Script" uid="uid://djovcydqarqog" path="res://script/gamesystem.gd" id="1_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://ceqjy3b18ihhf" path="res://scene/dayend.tscn" id="2_of57s"]
 [ext_resource type="PackedScene" uid="uid://dreyytgky8r1w" path="res://scene/tower.tscn" id="2_wp4xf"]
 [ext_resource type="PackedScene" uid="uid://daanmlo268yyd" path="res://scene/joke.tscn" id="4_brvut"]
 [ext_resource type="PackedScene" uid="uid://dniib04h7sq4u" path="res://scene/transition.tscn" id="5_0ha60"]
@@ -31,6 +32,9 @@ script = ExtResource("1_wp4xf")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=753121178]
 position = Vector2(980, 540)
+
+[node name="Dayend" parent="." unique_id=769970450 instance=ExtResource("2_of57s")]
+position = Vector2(0, 6000)
 
 [node name="Bungee" parent="." unique_id=304857572 instance=ExtResource("1_v0l8b")]
 position = Vector2(0, 2000)

@@ -1,3 +1,20 @@
-[gd_scene load_steps=0 format=3 uid="uid://ceqjy3b18ihhf"]
+[gd_scene format=3 uid="uid://ceqjy3b18ihhf"]
+
+[ext_resource type="Texture2D" uid="uid://exk133bp45i6" path="res://asset/endday.png" id="1_2tlyh"]
 
 [node name="Dayend" type="Node2D" unique_id=769970450]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926224056]
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("1_2tlyh")
+
+[node name="Label" type="Label" parent="." unique_id=1674616294]
+offset_left = 778.0
+offset_top = 271.0
+offset_right = 1554.0
+offset_bottom = 1021.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "test"
+vertical_alignment = 1
