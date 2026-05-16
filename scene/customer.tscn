@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://do1br3tm3v4f" path="res://asset/c2_2.png" id="7_ax5v5"]
 [ext_resource type="Texture2D" uid="uid://bnjafd4fagkgw" path="res://asset/c2_3.png" id="8_1o1vb"]
 [ext_resource type="Texture2D" uid="uid://cgkw2pyc6jgpa" path="res://asset/c2_4.png" id="9_2cc2q"]
+[ext_resource type="Texture2D" uid="uid://thtfw62n68kf" path="res://asset/c3_1.png" id="10_3d75n"]
+[ext_resource type="Texture2D" uid="uid://dqc3tdr8fses1" path="res://asset/c3_2.png" id="11_ax5v5"]
+[ext_resource type="Texture2D" uid="uid://b034wlotg40pd" path="res://asset/c3_3.png" id="12_1o1vb"]
+[ext_resource type="Texture2D" uid="uid://cbk7huqrx6fe6" path="res://asset/c3_4.png" id="13_2cc2q"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ty3hb"]
 animations = [{
@@ -75,11 +79,69 @@ animations = [{
 "loop": true,
 "name": &"c2_4",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_3d75n")
+}],
+"loop": true,
+"name": &"c3_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ax5v5")
+}],
+"loop": true,
+"name": &"c3_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_1o1vb")
+}],
+"loop": true,
+"name": &"c3_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_2cc2q")
+}],
+"loop": true,
+"name": &"c3_4",
+"speed": 5.0
 }]
+
+[sub_resource type="GDScript" id="GDScript_3d75n"]
+script/source = "extends AnimatedSprite2D
+
+func _on_customer_shape(chr: Variant, phase: Variant) -> void:
+	print(\"손님 외형 신호 받음\")
+	if chr == 1:
+		match phase:
+			1 : self.play(\"c1_1\")
+			2 : self.play(\"c1_2\")
+			3 : self.play(\"c1_3\")
+			4 : self.play(\"c1_4\")
+	elif chr == 2:
+		match phase:
+			1 : self.play(\"c2_1\")
+			2 : self.play(\"c2_2\")
+			3 : self.play(\"c2_3\")
+			4 : self.play(\"c2_4\")
+	elif chr == 3:
+		match phase:
+			1 : self.play(\"c3_1\")
+			2 : self.play(\"c3_2\")
+			3 : self.play(\"c3_3\")
+			4 : self.play(\"c3_4\")
+"
 
 [node name="Customer" type="Node2D" unique_id=1501992636]
 script = ExtResource("1_ty3hb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=272378064]
 sprite_frames = SubResource("SpriteFrames_ty3hb")
-animation = &"c1_3"
+animation = &"c1_1"
+script = SubResource("GDScript_3d75n")
