@@ -102,11 +102,32 @@ func endday(score, customer):
 	camera.offset = dayend_pos
 	var final_score
 	var textbox = get_node("Dayend/Label")
+	var ment
+	var ment_list
 	if customer == 1:
 		final_score = min(score, 2)/2 * 100
 	else:
 		final_score = min(score, customer*4)/(customer*4)*100
-	var text = "오늘 손님 수 : " + str(customer) + "\n오늘의 점수 : " + str(snapped(final_score, 0.01)) + "점"
+	if final_score >= 75:
+		ment_list = [
+			"멋진 하루였어!",
+			"손님들의 비명소리가 듣기 좋네~",
+			"손님들이 더 늘어날 것 같아!"
+		]
+	elif final_score >= 50:
+		ment_list = [
+			"평범한 하루였어.",
+			"손님이 더 늘어나면 좋겠어!",
+			"손님들을 더 놀라게 하고싶은데.."
+		]
+	else:
+		ment_list = [
+			"좀 더 분발해야겠는걸..",
+			"손님이 더 줄어들면 곤란해!",
+			"손님 응대에는 영 소질이 없나봐.."
+		]
+	ment = ment_list.pick_random()
+	var text = "오늘 손님 수 : " + str(customer) + "\n오늘의 점수 : " + str(snapped(final_score, 0.01)) + "점"+ "\n\n"+ment
 	textbox.text = text
 	await transition.transition_out()         # 닫기
 	await get_tree().create_timer(3.0).timeout

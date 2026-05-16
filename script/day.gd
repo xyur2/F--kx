@@ -27,9 +27,9 @@ func set_goal(yesterday_score, yesterday_customer):
 		object_score = 2
 	else:
 		object_score = yesterday_customer * 4
-	if yesterday_score <= object_score*0.3:
+	if yesterday_score <= object_score*0.5:
 		customer_num_goal = yesterday_customer - randi_range(1, 3)
-	elif yesterday_score <= object_score*0.6:
+	elif yesterday_score <= object_score*0.75:
 		customer_num_goal = yesterday_customer
 	else:
 		customer_num_goal = yesterday_customer + randi_range(1, 3)
