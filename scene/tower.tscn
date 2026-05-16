@@ -14,8 +14,8 @@ scale = Vector2(0.84, 0.84)
 texture = ExtResource("1_jlhg4")
 
 [node name="Me" parent="." unique_id=780189449 instance=ExtResource("4_tawd1")]
-position = Vector2(500, 600)
-scale = Vector2(0.5, 0.5)
+position = Vector2(850, 540)
+scale = Vector2(0.7, 0.7)
 
 [node name="TowerBackground2" type="Sprite2D" parent="." unique_id=695157474]
 position = Vector2(980, 540)
@@ -23,7 +23,7 @@ scale = Vector2(0.84, 0.84)
 texture = ExtResource("4_upbbx")
 
 [node name="Customer" parent="." unique_id=1501992636 instance=ExtResource("3_upbbx")]
-position = Vector2(1520, 670)
+position = Vector2(1535, 781)
 scale = Vector2(0.6, 0.6)
 
 [node name="CustomerTalkbox" type="Node2D" parent="." unique_id=2133472042]

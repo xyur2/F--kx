@@ -5,6 +5,7 @@ var today
 var yesterday
 var bungee_pos = Vector2(3000, 0)
 var tower_pos = Vector2(0, 0)
+var start_pos = Vector2(-3000,0)
 var camera
 var customer
 var joke_final
@@ -16,35 +17,46 @@ var bungee_my_line
 var bungee_customer_line
 var joke_scene
 var chosen_button = 0
+var jumped = false
+var transition
 signal continued
 signal button_chosen
+signal boost
+signal bungee
+signal bungee_continued
 
 func _ready():
-	state = "ongame"
+	state = "ready"
 	camera = get_node("Camera2D")
 	tower_my_line = get_node("Tower/MyTalkbox/TextEdit")
 	tower_customer_line = get_node("Tower/CustomerTalkbox/TextEdit2")
-	bungee_my_line = get_node("Bungee/MyTalkbox/TextEdit2")
+	bungee_my_line = get_node("Bungee/MyTalkbox/TextEdit")
 	bungee_customer_line = get_node("Bungee/CustomerTalkbox/TextEdit2")
 	joke_scene = get_node("Joke")
 	joke_scene.visible = false
+	transition = get_node("CanvasLayer/Transition")
 	print("씬 불러오기 성공")
-	
 
 	# _process 대신 _ready에서 시작
-	if state == "ongame":
-		start_game()
+	if state == "ready":
+		main_scene()
+		
+func main_scene():
+	camera.offset = start_pos
+	await continued
+	state = "ongame"
+	start_game()
 
 func start_game():
 	print("게임 시작 성공")
 	today = day.new()
 	today.set_day(1)
-	today.set_goal(0, 2)
 	print("초기 설정 완료")
 	for i in range(1, 15):
 		await day_process()
 		yesterday = today
 		today = day.new()
+		today.set_goal(yesterday.get_scream(), yesterday.get_customer())
 		print(i, "일차 완료")
 
 func day_process():
@@ -72,10 +84,14 @@ func day_process():
 		# ----------- 안내 장면 --------------
 		line_num_total = lines.size()
 		today.increase_customer()
+		set_line_bungee_me("")
+		set_line_bungee_customer("")
+		await transition.transition_in()  # 닫기
 		camera.offset = tower_pos
+		await transition.transition_out()         # 열기
 		line_num_now = 0
 
-		while line_num_now < line_num_total:
+		while (line_num_now < line_num_total):
 			await continued
 			var speaker = lines[line_num_now][0]
 			var line_now = lines[line_num_now][1]
@@ -87,9 +103,16 @@ func day_process():
 				print("speaker 지정에 문제 발생")
 			
 			line_num_now += 1
+		await continued
+		set_line_tower_me("")
+		set_line_tower_customer("")
 		print("손님 안내 완료")
-		# ----------- 장난 선택 장면 --------------
+		
+		await transition.transition_in()  # 닫기
 		camera.offset = bungee_pos
+		await transition.transition_out()         # 열기
+		
+		# ----------- 장난 선택 장면 --------------
 		joke_scene.visible = true
 		var joke_1 = joke.new()
 		var joke_2 = joke.new()
@@ -103,11 +126,19 @@ func day_process():
 		
 		print("장난 선택 완료")
 		# ----------- 접대 장면 --------------
+		print("line_num_total: ", line_num_total)
+		print("lines: ", lines)
 		line_num_total = lines.size()
 		line_num_now = 0
 		joke_scene.visible = false
-		while line_num_now < line_num_total:
-			await continued
+		print("line_num_total: ", line_num_total)
+		print("lines: ", lines)
+		jumped = false
+		while (line_num_now < line_num_total):
+			print("while started")
+			await bungee_continued
+			if jumped:
+				break
 			var speaker = lines[line_num_now][0]
 			var line_now = lines[line_num_now][1]
 			if speaker == "me":
@@ -116,9 +147,16 @@ func day_process():
 				set_line_bungee_customer(line_now)
 			else:
 				print("speaker 지정에 문제 발생")
-			
+			print(line_now)
 			line_num_now += 1
+			emit_signal("boost")
+		await bungee
+		jumped = false
 		print("손님 접대 완료")
+		
+		await transition.transition_in()  # 닫기
+		camera.offset = bungee_pos
+		await transition.transition_out()         # 열기
 
 func set_line_tower_customer(line):
 	tower_customer_line.text = line
@@ -133,9 +171,14 @@ func set_line_bungee_me(line):
 	bungee_my_line.text = line
 	print(line)
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("continue"):
-		emit_signal("continued")
+		if camera.offset == bungee_pos:
+			emit_signal("bungee_continued")
+			print("bungee continue")
+		else:
+			emit_signal("continued")
+			print("continue")
 
 func _on_button_pressed() -> void:
 	chosen_button = 1
@@ -148,3 +191,8 @@ func _on_button_2_pressed() -> void:
 func _on_button_3_pressed() -> void:
 	chosen_button = 3
 	emit_signal("button_chosen")
+
+func _on_bungee_button_pressed() -> void:
+	jumped = true
+	emit_signal("bungee_continued")  # while 탈출
+	emit_signal("bungee")

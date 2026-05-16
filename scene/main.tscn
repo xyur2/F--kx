@@ -4,23 +4,38 @@
 [ext_resource type="Script" uid="uid://djovcydqarqog" path="res://script/gamesystem.gd" id="1_wp4xf"]
 [ext_resource type="PackedScene" uid="uid://dreyytgky8r1w" path="res://scene/tower.tscn" id="2_wp4xf"]
 [ext_resource type="PackedScene" uid="uid://daanmlo268yyd" path="res://scene/joke.tscn" id="4_brvut"]
+[ext_resource type="PackedScene" uid="uid://dniib04h7sq4u" path="res://scene/transition.tscn" id="5_0ha60"]
+[ext_resource type="PackedScene" uid="uid://b7jn4anbc3cj" path="res://scene/start.tscn" id="5_p1hux"]
+[ext_resource type="Script" uid="uid://cusil41qmoska" path="res://script/transition.gd" id="6_4j5ol"]
 
 [node name="Main" type="Node2D" unique_id=2093430170]
 script = ExtResource("1_wp4xf")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=753121178]
+position = Vector2(980, 540)
 
 [node name="Bungee" parent="." unique_id=304857572 instance=ExtResource("1_v0l8b")]
 position = Vector2(3000, 0)
 
 [node name="Tower" parent="." unique_id=1629670762 instance=ExtResource("2_wp4xf")]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=753121178]
-position = Vector2(980, 540)
-
 [node name="Joke" parent="." unique_id=834924065 instance=ExtResource("4_brvut")]
 position = Vector2(3000, 0)
 
+[node name="Start" parent="." unique_id=113536068 instance=ExtResource("5_p1hux")]
+position = Vector2(-3000, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1020389309]
+
+[node name="Transition" parent="CanvasLayer" unique_id=1778358465 instance=ExtResource("5_0ha60")]
+script = ExtResource("6_4j5ol")
+
+[connection signal="boost" from="." to="Bungee/Line2D" method="_on_main_boost"]
+[connection signal="pressed" from="Bungee/BungeeButton" to="." method="_on_bungee_button_pressed"]
+[connection signal="pressed" from="Bungee/BungeeButton" to="Bungee/Line2D" method="_on_bungee_button_pressed"]
 [connection signal="pressed" from="Joke/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Joke/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Joke/Button3" to="." method="_on_button_3_pressed"]
 
+[editable path="Bungee"]
 [editable path="Joke"]

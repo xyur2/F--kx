@@ -118,12 +118,27 @@ func _on_timer_timeout():
 	
 	# 디버깅: 점이 늘어나는지 출력창에서 확인
 	print("현재 점 개수: ", get_point_count(), " | 위치: ", Vector2(new_pos))
-	
 
-func _on_surprise_pressed():
-	now_button += 1
-	if now_button <= get_graph()[0]:
-		max_boost_value=get_graph()[now_button][0] * -10
-		boost_deduction_speed_value = 0.000001 * get_graph()[now_button][1]
-		cur_boost_value = max_boost_value # Godot은 -Y가 위쪽이므로 위로 솟구치게 함
-		print(get_graph()[now_button])
+func _on_main_boost() -> void:
+	if Input.is_action_just_pressed("continue"):
+		now_button += 1
+		if now_button <= get_graph()[0]:
+			max_boost_value=get_graph()[now_button][0] * -10
+			boost_deduction_speed_value = 0.000001 * get_graph()[now_button][1]
+			cur_boost_value = max_boost_value # Godot은 -Y가 위쪽이므로 위로 솟구치게 함
+			print(get_graph()[now_button])
+
+
+func _on_bungee_button_pressed() -> void:
+	clear_points()
+	last_position = Vector2(0, 1080)
+	add_point(last_position)
+
+	cur_boost_value = 0.0
+	get_surprised = false
+	target_new_pos = 0.0
+	now_button = 0
+
+	graph_num = randi_range(1, 25)
+	get_graph()
+	print(graph_num)

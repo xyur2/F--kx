@@ -51,5 +51,5 @@ scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_typl6")
 
 [node name="Me" parent="." unique_id=780189449 instance=ExtResource("2_vgkxu")]
-position = Vector2(500, 600)
-scale = Vector2(0.5, 0.5)
+position = Vector2(930, 630)
+scale = Vector2(0.7, 0.7)
