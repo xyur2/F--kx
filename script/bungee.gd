@@ -14,3 +14,6 @@ func _process(delta: float) -> void:
 func _on_main_graph_signal(line_num_now) -> void:
 	graph_number.emit(line_num_now+1)
 	pass # Replace with function body.
+
+func _on_bungee(value) -> void:
+	pass

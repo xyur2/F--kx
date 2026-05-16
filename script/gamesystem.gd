@@ -32,6 +32,12 @@ var tower_me_animation
 var tower_customer_animation
 var sender
 var pointer
+var cur 
+var fin 
+var scream 
+var Day
+# Called when the node enters the scene tree for the first time.
+
 
 signal continued
 signal button_chosen
@@ -48,7 +54,10 @@ func _ready():
 	bungee_my_line = get_node("Bungee/MyTalkbox/TextEdit")
 	bungee_customer_line = get_node("Bungee/CustomerTalkbox/TextEdit2")
 	joke_scene = get_node("Joke")
-	
+	cur = get_node("Tower/recorder/Label")
+	fin = get_node("Tower/recorder/Label2")
+	scream = get_node("Tower/recorder/Label3")
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 	bungee_me_animation = get_node("Bungee/Me/AnimatedSprite2D")
 	bungee_customer_animation = get_node("Bungee/Customer/AnimatedSprite2D")
 	bungee_hand = get_node("Bungee/AnimatedSprite2D")
@@ -83,6 +92,9 @@ func start_game():
 		yesterday = today
 		today = day.new()
 		today.set_goal(yesterday.get_scream(), yesterday.get_customer())
+		cur.text=today.get_customer()
+		fin.text=today.get_goal_customer()
+		scream.text=today.get_scream()
 		print(i, "일차 완료. 내일 손님 수 : ", today.get_goal_customer())
 		
 
@@ -117,6 +129,10 @@ func day_process():
 		line_num_now = 0
 		set_line_bungee_me("...")
 		set_line_bungee_customer("...")
+		
+		cur.text=str(today.get_customer())
+		fin.text=str(today.get_goal_customer())
+		scream.text=str(today.get_scream())
 
 		while (line_num_now < line_num_total):
 			await continued
@@ -198,7 +214,6 @@ func day_process():
 		jumped = false
 		print("손님 접대 완료")
 		is_bungee = false
-		
 		await transition.transition_in()  # 닫기
 		bungee_customer.position = pos
 		camera.offset = bungee_pos
