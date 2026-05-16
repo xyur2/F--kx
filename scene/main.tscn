@@ -8,6 +8,24 @@
 [ext_resource type="PackedScene" uid="uid://b7jn4anbc3cj" path="res://scene/start.tscn" id="5_p1hux"]
 [ext_resource type="Script" uid="uid://cusil41qmoska" path="res://script/transition.gd" id="6_4j5ol"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p1hux"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tqoya"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k65ib"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_of57s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wscrc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b5f6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hybxs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2gmf"]
+
 [node name="Main" type="Node2D" unique_id=2093430170]
 script = ExtResource("1_wp4xf")
 
@@ -17,13 +35,25 @@ position = Vector2(980, 540)
 [node name="Bungee" parent="." unique_id=304857572 instance=ExtResource("1_v0l8b")]
 position = Vector2(0, 2000)
 
-[node name="Timer2" type="Timer" parent="Bungee/Line2D" parent_id_path=PackedInt32Array(304857572, 318258463) index="1" unique_id=2108573612]
-autostart = true
-
 [node name="Tower" parent="." unique_id=1629670762 instance=ExtResource("2_wp4xf")]
 
 [node name="Joke" parent="." unique_id=834924065 instance=ExtResource("4_brvut")]
 position = Vector2(0, 2000)
+
+[node name="Button" parent="Joke" index="1" unique_id=1974009903]
+theme_override_styles/normal = SubResource("StyleBoxEmpty_p1hux")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tqoya")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k65ib")
+
+[node name="Button2" parent="Joke" index="2" unique_id=511233706]
+theme_override_styles/normal = SubResource("StyleBoxEmpty_of57s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_wscrc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mswub")
+
+[node name="Button3" parent="Joke" index="3" unique_id=257208690]
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b5f6u")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hybxs")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v2gmf")
 
 [node name="Start" parent="." unique_id=113536068 instance=ExtResource("5_p1hux")]
 position = Vector2(0, 4000)
@@ -36,7 +66,7 @@ mouse_filter = 2
 script = ExtResource("6_4j5ol")
 
 [connection signal="boost" from="." to="Bungee/Line2D" method="_on_main_boost"]
-[connection signal="timeout" from="Bungee/Line2D/Timer2" to="Bungee/Line2D" method="_on_timer_2_timeout"]
+[connection signal="scream_val" from="Bungee/Line2D" to="." method="_on_line_2d_scream_val"]
 [connection signal="pressed" from="Bungee/BungeeButton" to="." method="_on_bungee_button_pressed"]
 [connection signal="pressed" from="Bungee/BungeeButton" to="Bungee/Line2D" method="_on_bungee_button_pressed"]
 [connection signal="pressed" from="Joke/Button" to="." method="_on_button_pressed"]
@@ -44,4 +74,5 @@ script = ExtResource("6_4j5ol")
 [connection signal="pressed" from="Joke/Button3" to="." method="_on_button_3_pressed"]
 
 [editable path="Bungee"]
+[editable path="Bungee/Customer"]
 [editable path="Joke"]

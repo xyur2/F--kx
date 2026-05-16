@@ -150,4 +150,4 @@ func _on_bungee_button_pressed() -> void:
 	#print(graph_num)
 
 func get_scream_score():
-	return 50
+	return 0.5

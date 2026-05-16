@@ -23,8 +23,8 @@ scale = Vector2(0.85, 0.85)
 texture = ExtResource("4_upbbx")
 
 [node name="Customer" parent="." unique_id=1501992636 instance=ExtResource("3_upbbx")]
-position = Vector2(1737, 811)
-scale = Vector2(0.6, 0.6)
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
 
 [node name="Talkbox" type="Sprite2D" parent="." unique_id=137447063]
 position = Vector2(980, 540)

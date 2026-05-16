@@ -8,6 +8,8 @@ var tower_pos = Vector2(0, 0)
 var start_pos = Vector2(0, 4000)
 var camera
 var customer
+var is_animating = false
+var scream_score = 0
 var joke_final
 var me
 var is_waiting = true
@@ -20,6 +22,7 @@ var chosen_button = 0
 var jumped = false
 var transition
 var is_bungee = false
+var bungee_customer
 
 var bungee_me_animation
 var bungee_customer_animation
@@ -27,6 +30,8 @@ var bungee_hand
 var joke_me_animation
 var tower_me_animation
 var tower_customer_animation
+var sender
+var pointer
 
 signal continued
 signal button_chosen
@@ -50,6 +55,8 @@ func _ready():
 	tower_me_animation = get_node("Tower/Me/AnimatedSprite2D")
 	tower_customer_animation = get_node("Tower/Customer/AnimatedSprite2D")
 	joke_me_animation = get_node("Joke/Me/AnimatedSprite2D")
+	bungee_customer = get_node("Bungee/Customer")
+	pointer = get_node("Bungee/BungeeBackground2")
 	
 	joke_scene.visible = false
 	transition = get_node("CanvasLayer/Transition")
@@ -62,9 +69,10 @@ func _ready():
 func main_scene():
 	camera.offset = start_pos
 	await continued
+	await transition.transition_in()  # 닫기
 	state = "ongame"
 	start_game()
-
+	
 func start_game():
 	print("게임 시작 성공")
 	today = day.new()
@@ -102,8 +110,8 @@ func day_process():
 		# ----------- 안내 장면 --------------
 		line_num_total = lines.size()
 		today.increase_customer()
-		await transition.transition_in()  # 닫기
 		camera.offset = tower_pos
+		customer.set_shape1()
 		await transition.transition_out()         # 열기
 		line_num_now = 0
 		set_line_bungee_me("...")
@@ -124,13 +132,16 @@ func day_process():
 			
 			line_num_now += 1
 		await continued
-		set_line_tower_me("")
-		set_line_tower_customer("")
 		print("손님 안내 완료")
+		tower_me_animation.play("default")
 		
 		await transition.transition_in()  # 닫기
+		set_line_tower_me("...")
+		set_line_tower_customer("...")
 		camera.offset = bungee_pos
 		joke_scene.visible = true
+		pointer.position = Vector2(980.0, 540.0)
+		customer.set_shape2()
 		await transition.transition_out()         # 열기
 		
 		# ----------- 장난 선택 장면 --------------
@@ -150,8 +161,6 @@ func day_process():
 		joke_scene.visible = false
 		# ----------- 접대 장면 --------------
 		is_bungee = true
-		print("line_num_total: ", line_num_total)
-		print("lines: ", lines)
 		line_num_total = lines.size()
 		line_num_now = 0
 		print("line_num_total: ", line_num_total)
@@ -170,23 +179,28 @@ func day_process():
 			elif speaker == "customer":
 				set_line_bungee_customer(line_now)
 				bungee_me_animation.play("default")
+				customer.set_shape3()
 			else:
 				print("speaker 지정에 문제 발생")
-			print(line_now)
 			line_num_now += 1
 			emit_signal("boost")
 		bungee_me_animation.play("smile")
 		await bungee
 		bungee_hand.play("bye")
-		
+		var customer_tween = create_tween()
+		customer.set_shape4()
+		var new_pos = Vector2(bungee_customer.position.x, bungee_customer.position.y+1500)
+		var pos = Vector2(bungee_customer.position.x, bungee_customer.position.y)
+		customer_tween.tween_property(bungee_customer, "position", new_pos, 1)
+
 		await fallen
 		jumped = false
 		print("손님 접대 완료")
 		is_bungee = false
 		
 		await transition.transition_in()  # 닫기
+		bungee_customer.position = pos
 		camera.offset = bungee_pos
-		await transition.transition_out()         # 열기
 		bungee_hand.play("default")
 
 func set_line_tower_customer(line):
@@ -201,6 +215,39 @@ func set_line_bungee_customer(line):
 func set_line_bungee_me(line):
 	bungee_my_line.text = line
 	print(line)
+func carculate_score(score, type):
+	var final_score
+	match type:
+		"Cower" : final_score = 1 + score*2
+		"Bragger" : final_score = 1 + score*5
+		"Mania" : final_score = 1 + score*8
+		"Master" : final_score = 1 + score*11
+	return final_score
+
+func score_bar(score):
+	print("score bar 진입")
+	if is_animating:
+		return
+	is_animating = true
+	var pointer_tween = create_tween()
+	var position = Vector2(pointer.position.x, pointer.position.y)
+	var new_position = Vector2(pointer.position.x, pointer.position.y-450*score)
+	print("현재 포인터 위치: ", pointer.position)
+	print("목표 위치: ", new_position)
+	print("score: ", score) 
+	pointer_tween.tween_property(pointer, "position", new_position, 1)
+	await pointer_tween.finished
+	print("스코어바 이동")
+	pointer_tween = create_tween()
+	pointer_tween.tween_property(pointer, "position", position, 1)
+	await pointer_tween.finished
+	print("스코어바 원위치")
+	pointer_tween = create_tween()
+	pointer_tween.tween_property(pointer, "position", position, 1)
+	await pointer_tween.finished
+	print("신호")
+	is_animating = false
+	emit_signal("fallen")
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("continue"):
@@ -227,3 +274,7 @@ func _on_bungee_button_pressed() -> void:
 	jumped = true
 	emit_signal("bungee_continued")  # while 탈출
 	emit_signal("bungee")
+
+func _on_line_2d_scream_val(value: Variant) -> void:
+	scream_score = value
+	score_bar(scream_score)
