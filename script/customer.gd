@@ -95,3 +95,6 @@ func get_line3():
 
 func get_shape():
 	return chrshape
+
+func get_personality():
+	return personality

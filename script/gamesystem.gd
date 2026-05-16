@@ -83,7 +83,7 @@ func start_game():
 		yesterday = today
 		today = day.new()
 		today.set_goal(yesterday.get_scream(), yesterday.get_customer())
-		print(i, "일차 완료")
+		print(i, "일차 완료. 내일 손님 수 : ", today.get_goal_customer())
 
 func day_process():
 	var customer_num
@@ -247,6 +247,9 @@ func score_bar(score):
 	await pointer_tween.finished
 	print("신호")
 	is_animating = false
+	var personal_score = carculate_score(score, customer.get_personality())
+	today.increase_scream(personal_score)
+	today.increase_customer()
 	emit_signal("fallen")
 
 func set_shape(where, chr, num):
