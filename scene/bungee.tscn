@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://trxgahumbk60"]
 
+[ext_resource type="Script" uid="uid://6akto83cd610" path="res://script/start.gd" id="1_4c15k"]
 [ext_resource type="Texture2D" uid="uid://d2sollcw132jy" path="res://asset/bungee_1.png" id="1_p3fes"]
+[ext_resource type="Texture2D" uid="uid://dgpce8shuafvp" path="res://asset/main_2.png" id="2_64ene"]
 [ext_resource type="Texture2D" uid="uid://dmjhl4vwi8gr5" path="res://asset/bungee_pointer.png" id="2_vrbfy"]
+[ext_resource type="Texture2D" uid="uid://pkya7txl2guq" path="res://asset/main_1.png" id="3_6faif"]
 [ext_resource type="PackedScene" uid="uid://uxg8ndxwqart" path="res://scene/customer.tscn" id="3_6ll2o"]
-[ext_resource type="Texture2D" uid="uid://cbappd0t88pr0" path="res://asset/talkbox.png" id="4_6ll2o"]
 [ext_resource type="Texture2D" uid="uid://1t2h5kgxsk8h" path="res://asset/bungee_hand_2.png" id="4_ekh1g"]
 [ext_resource type="PackedScene" uid="uid://bq5ol7s0jrkkj" path="res://scene/me.tscn" id="4_p3fes"]
 [ext_resource type="Texture2D" uid="uid://dywmojfjy70qu" path="res://asset/bungee_hand_1.png" id="5_vrbfy"]
 [ext_resource type="PackedScene" uid="uid://btw5ign14qvsq" path="res://scene/line_2d.tscn" id="6_n6frx"]
+[ext_resource type="Texture2D" uid="uid://bk5pt15126blq" path="res://asset/textbox.png" id="11_4c15k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2jvip"]
 animations = [{
@@ -29,6 +32,23 @@ animations = [{
 }]
 
 [node name="Bungee" type="Node2D" unique_id=19734280]
+script = ExtResource("1_4c15k")
+
+[node name="background" type="Sprite2D" parent="." unique_id=1169112401]
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("2_64ene")
+
+[node name="background2" type="Sprite2D" parent="." unique_id=1574778423]
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("2_64ene")
+flip_h = true
+
+[node name="background3" type="Sprite2D" parent="." unique_id=866934680]
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("3_6faif")
 
 [node name="BungeeBackground" type="Sprite2D" parent="." unique_id=2061637615]
 position = Vector2(980, 540)
@@ -40,18 +60,22 @@ position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("2_vrbfy")
 
-[node name="Customer" parent="." unique_id=242103159 instance=ExtResource("3_6ll2o")]
-position = Vector2(1520, 670)
-scale = Vector2(0.6, 0.6)
-
 [node name="Me" parent="." unique_id=1319426499 instance=ExtResource("4_p3fes")]
-position = Vector2(930, 630)
-scale = Vector2(0.7, 0.7)
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=208913829]
-position = Vector2(800, 545)
-scale = Vector2(0.82, 0.82)
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
 sprite_frames = SubResource("SpriteFrames_2jvip")
+
+[node name="Customer" parent="." unique_id=242103159 instance=ExtResource("3_6ll2o")]
+position = Vector2(1748, 1246)
+
+[node name="Talkbox" type="Sprite2D" parent="." unique_id=1374173520]
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("11_4c15k")
 
 [node name="Line2D" parent="." unique_id=318258463 instance=ExtResource("6_n6frx")]
 z_index = 0
@@ -72,42 +96,32 @@ text = "BUNGEE"
 
 [node name="CustomerTalkbox" type="Node2D" parent="." unique_id=1228393396]
 
-[node name="Talkbox2" type="Sprite2D" parent="CustomerTalkbox" unique_id=1331335123]
-position = Vector2(1012.99994, 813)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("4_6ll2o")
-flip_h = true
-
-[node name="TextEdit2" type="Label" parent="CustomerTalkbox" unique_id=2076469847]
-offset_left = 804.9999
-offset_top = 664.0
-offset_right = 1347.4998
-offset_bottom = 961.5
+[node name="TextEdit2" type="Label" parent="CustomerTalkbox" unique_id=45715030]
+modulate = Color(0, 0, 0, 1)
+offset_left = 904.0
+offset_top = 508.00003
+offset_right = 1446.4999
+offset_bottom = 805.5
 scale = Vector2(0.8, 0.8)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "test"
+text = "..."
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="MyTalkbox" type="Node2D" parent="." unique_id=639442144]
 
-[node name="Talkbox" type="Sprite2D" parent="MyTalkbox" unique_id=1820953282]
-position = Vector2(1007, 281)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("4_6ll2o")
-
-[node name="TextEdit" type="Label" parent="MyTalkbox" unique_id=505379171]
-offset_left = 748.0
-offset_top = 130.0
-offset_right = 1241.0
-offset_bottom = 354.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+[node name="TextEdit" type="Label" parent="MyTalkbox" unique_id=1830210568]
+modulate = Color(0, 0, 0, 1)
+offset_left = 954.0
+offset_top = 67.0
+offset_right = 1554.0
+offset_bottom = 337.0
 theme_override_font_sizes/font_size = 50
-text = "test"
+text = "..."
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="Line2D/Timer" to="Line2D" method="_on_timer_timeout"]

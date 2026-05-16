@@ -15,22 +15,28 @@ script = ExtResource("1_wp4xf")
 position = Vector2(980, 540)
 
 [node name="Bungee" parent="." unique_id=304857572 instance=ExtResource("1_v0l8b")]
-position = Vector2(3000, 0)
+position = Vector2(0, 2000)
+
+[node name="Timer2" type="Timer" parent="Bungee/Line2D" parent_id_path=PackedInt32Array(304857572, 318258463) index="1" unique_id=2108573612]
+autostart = true
 
 [node name="Tower" parent="." unique_id=1629670762 instance=ExtResource("2_wp4xf")]
 
 [node name="Joke" parent="." unique_id=834924065 instance=ExtResource("4_brvut")]
-position = Vector2(3000, 0)
+position = Vector2(0, 2000)
 
 [node name="Start" parent="." unique_id=113536068 instance=ExtResource("5_p1hux")]
-position = Vector2(-3000, 0)
+position = Vector2(0, 4000)
+scale = Vector2(1, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1020389309]
 
 [node name="Transition" parent="CanvasLayer" unique_id=1778358465 instance=ExtResource("5_0ha60")]
+mouse_filter = 2
 script = ExtResource("6_4j5ol")
 
 [connection signal="boost" from="." to="Bungee/Line2D" method="_on_main_boost"]
+[connection signal="timeout" from="Bungee/Line2D/Timer2" to="Bungee/Line2D" method="_on_timer_2_timeout"]
 [connection signal="pressed" from="Bungee/BungeeButton" to="." method="_on_bungee_button_pressed"]
 [connection signal="pressed" from="Bungee/BungeeButton" to="Bungee/Line2D" method="_on_bungee_button_pressed"]
 [connection signal="pressed" from="Joke/Button" to="." method="_on_button_pressed"]

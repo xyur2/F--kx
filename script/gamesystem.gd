@@ -3,9 +3,9 @@ var states = ["ready", "pause", "ongame"]
 var state
 var today
 var yesterday
-var bungee_pos = Vector2(3000, 0)
+var bungee_pos = Vector2(0, 2000)
 var tower_pos = Vector2(0, 0)
-var start_pos = Vector2(-3000,0)
+var start_pos = Vector2(0, 4000)
 var camera
 var customer
 var joke_final
@@ -19,11 +19,21 @@ var joke_scene
 var chosen_button = 0
 var jumped = false
 var transition
+var is_bungee = false
+
+var bungee_me_animation
+var bungee_customer_animation
+var bungee_hand
+var joke_me_animation
+var tower_me_animation
+var tower_customer_animation
+
 signal continued
 signal button_chosen
 signal boost
 signal bungee
 signal bungee_continued
+signal fallen
 
 func _ready():
 	state = "ready"
@@ -33,6 +43,14 @@ func _ready():
 	bungee_my_line = get_node("Bungee/MyTalkbox/TextEdit")
 	bungee_customer_line = get_node("Bungee/CustomerTalkbox/TextEdit2")
 	joke_scene = get_node("Joke")
+	
+	bungee_me_animation = get_node("Bungee/Me/AnimatedSprite2D")
+	bungee_customer_animation = get_node("Bungee/Customer/AnimatedSprite2D")
+	bungee_hand = get_node("Bungee/AnimatedSprite2D")
+	tower_me_animation = get_node("Tower/Me/AnimatedSprite2D")
+	tower_customer_animation = get_node("Tower/Customer/AnimatedSprite2D")
+	joke_me_animation = get_node("Joke/Me/AnimatedSprite2D")
+	
 	joke_scene.visible = false
 	transition = get_node("CanvasLayer/Transition")
 	print("씬 불러오기 성공")
@@ -70,26 +88,26 @@ func day_process():
 	for i in range(customer_num):
 		customer = Customer.new()
 		lines = [
-			["me", "어서오세요! 번지점프 하러 오셨나요?"],
+			["me", "어서오세요!\n번지점프 하러 오셨나요?"],
 			["customer", customer.get_line1()],
 			["me", "일단 여기 안전 서류부터 좀 작성해 주세요."],
 			["customer", customer.get_line2()],
 			["me", "음, 서류 확인했어요! 그럼 간단한 안전교육을 진행해 볼게요."],
 			["me", "뛰어내리는 과정에서 줄이 몸을 감쌀 수 있어요."],
-			["me", "이때 목이 졸리지 않게 머리를 팔로 감싸 주셔야 해요."],
+			["me", "이때 목이 졸리지 않게\n머리를 팔로 감싸 주셔야 해요."],
 			["customer", customer.get_line3()],
-			["me", "물론 저희 번지점프대에선 한번도 사고가 난 적이 없답니다!"],
-			["me", "자, 여기 안전장비에요. 착용하시고 준비가 되면 위로 같이 올라가시죠."]
+			["me", "물론 저희 번지점프대에선\n한번도 사고가 난 적이\n없답니다!"],
+			["me", "자, 여기 안전장비에요.\n착용하시고 준비가 되면\n위로 같이 올라가시죠."]
 		]
 		# ----------- 안내 장면 --------------
 		line_num_total = lines.size()
 		today.increase_customer()
-		set_line_bungee_me("")
-		set_line_bungee_customer("")
 		await transition.transition_in()  # 닫기
 		camera.offset = tower_pos
 		await transition.transition_out()         # 열기
 		line_num_now = 0
+		set_line_bungee_me("...")
+		set_line_bungee_customer("...")
 
 		while (line_num_now < line_num_total):
 			await continued
@@ -97,8 +115,10 @@ func day_process():
 			var line_now = lines[line_num_now][1]
 			if speaker == "me":
 				set_line_tower_me(line_now)
+				tower_me_animation.play("talk")
 			elif speaker == "customer":
 				set_line_tower_customer(line_now)
+				tower_me_animation.play("default")
 			else:
 				print("speaker 지정에 문제 발생")
 			
@@ -110,14 +130,16 @@ func day_process():
 		
 		await transition.transition_in()  # 닫기
 		camera.offset = bungee_pos
+		joke_scene.visible = true
 		await transition.transition_out()         # 열기
 		
 		# ----------- 장난 선택 장면 --------------
-		joke_scene.visible = true
+		joke_me_animation.play("smile")
 		var joke_1 = joke.new()
 		var joke_2 = joke.new()
 		var joke_3 = joke.new()
 		await button_chosen
+		joke_me_animation.play("default")
 		match chosen_button:
 			1: joke_final = joke_1
 			2: joke_final = joke_2
@@ -125,12 +147,13 @@ func day_process():
 		lines = joke_final.get_lines()
 		
 		print("장난 선택 완료")
+		joke_scene.visible = false
 		# ----------- 접대 장면 --------------
+		is_bungee = true
 		print("line_num_total: ", line_num_total)
 		print("lines: ", lines)
 		line_num_total = lines.size()
 		line_num_now = 0
-		joke_scene.visible = false
 		print("line_num_total: ", line_num_total)
 		print("lines: ", lines)
 		jumped = false
@@ -143,20 +166,28 @@ func day_process():
 			var line_now = lines[line_num_now][1]
 			if speaker == "me":
 				set_line_bungee_me(line_now)
+				bungee_me_animation.play("talk")
 			elif speaker == "customer":
 				set_line_bungee_customer(line_now)
+				bungee_me_animation.play("default")
 			else:
 				print("speaker 지정에 문제 발생")
 			print(line_now)
 			line_num_now += 1
 			emit_signal("boost")
+		bungee_me_animation.play("smile")
 		await bungee
+		bungee_hand.play("bye")
+		
+		await fallen
 		jumped = false
 		print("손님 접대 완료")
+		is_bungee = false
 		
 		await transition.transition_in()  # 닫기
 		camera.offset = bungee_pos
 		await transition.transition_out()         # 열기
+		bungee_hand.play("default")
 
 func set_line_tower_customer(line):
 	tower_customer_line.text = line
@@ -173,7 +204,7 @@ func set_line_bungee_me(line):
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("continue"):
-		if camera.offset == bungee_pos:
+		if is_bungee:
 			emit_signal("bungee_continued")
 			print("bungee continue")
 		else:

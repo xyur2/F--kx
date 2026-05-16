@@ -13,6 +13,9 @@ var b=3
 var graph_num = randi_range(1,25)
 var numbers
 var now_button = 0
+var scream_score
+
+signal scream_val(value)
 
 func get_graph():
 	match graph_num:
@@ -112,12 +115,11 @@ func _on_timer_timeout():
 		new_pos = Vector2(updated_x, new_pos.y)
 	
 	last_position = new_pos
-	
 	# 점 추가
 	add_point(Vector2(new_pos))
 	
 	# 디버깅: 점이 늘어나는지 출력창에서 확인
-	print("현재 점 개수: ", get_point_count(), " | 위치: ", Vector2(new_pos))
+	#print("현재 점 개수: ", get_point_count(), " | 위치: ", Vector2(new_pos))
 
 func _on_main_boost() -> void:
 	if Input.is_action_just_pressed("continue"):
@@ -130,6 +132,10 @@ func _on_main_boost() -> void:
 
 
 func _on_bungee_button_pressed() -> void:
+	# ------------- scream score 전달 ----------
+	scream_score = get_scream_score()
+	scream_val.emit(scream_score)
+	# ------------ 초기화 -----------
 	clear_points()
 	last_position = Vector2(0, 1080)
 	add_point(last_position)
@@ -141,4 +147,7 @@ func _on_bungee_button_pressed() -> void:
 
 	graph_num = randi_range(1, 25)
 	get_graph()
-	print(graph_num)
+	#print(graph_num)
+
+func get_scream_score():
+	return 50
