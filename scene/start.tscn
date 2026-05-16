@@ -5,16 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://pkya7txl2guq" path="res://asset/main_1.png" id="2_xmel7"]
 
 [node name="Start" type="Node2D" unique_id=113536068]
-position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 script = ExtResource("1_xmel7")
 
 [node name="background" type="Sprite2D" parent="." unique_id=1642170967]
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
 texture = ExtResource("1_gbpcu")
 
 [node name="background2" type="Sprite2D" parent="." unique_id=1666162994]
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
 texture = ExtResource("1_gbpcu")
 flip_h = true
 
 [node name="background3" type="Sprite2D" parent="." unique_id=445828057]
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
 texture = ExtResource("2_xmel7")

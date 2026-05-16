@@ -1,15 +1,36 @@
 [gd_scene format=3 uid="uid://bq5ol7s0jrkkj"]
 
-[ext_resource type="Texture2D" uid="uid://c2j46xjgkgj75" path="res://asset/me.png" id="1_j8no5"]
+[ext_resource type="Texture2D" uid="uid://bj84ve4jrm46k" path="res://asset/me_1.png" id="1_bfpxw"]
+[ext_resource type="Texture2D" uid="uid://cxjevipak6mbf" path="res://asset/me_3.png" id="2_06w6w"]
+[ext_resource type="Texture2D" uid="uid://thlgf5r5c207" path="res://asset/me_2.png" id="3_ktldi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aba2m"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_j8no5")
+"texture": ExtResource("1_bfpxw")
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_06w6w")
+}],
+"loop": true,
+"name": &"smile",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bfpxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ktldi")
+}],
+"loop": true,
+"name": &"talk",
 "speed": 5.0
 }]
 
@@ -17,3 +38,6 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=783049179]
 sprite_frames = SubResource("SpriteFrames_aba2m")
+animation = &"talk"
+frame = 1
+frame_progress = 0.38404065

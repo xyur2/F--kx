@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dniib04h7sq4u"]
+
+[ext_resource type="Shader" uid="uid://bgoa43lnlk33r" path="res://scene/transition.gdshader" id="1_hpshh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pywll"]
+shader = ExtResource("1_hpshh")
+shader_parameter/circle_size = 0.0
+shader_parameter/screen_width = 0.0
+shader_parameter/screen_height = 0.0
+
+[node name="Transition" type="ColorRect" unique_id=1778358465]
+material = SubResource("ShaderMaterial_pywll")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
