@@ -5,46 +5,46 @@
 [ext_resource type="Texture2D" uid="uid://cbappd0t88pr0" path="res://asset/talkbox.png" id="4_6ll2o"]
 [ext_resource type="PackedScene" uid="uid://bq5ol7s0jrkkj" path="res://scene/me.tscn" id="4_p3fes"]
 
-[node name="main" type="Node2D" unique_id=304857572]
+[node name="Bungee" type="Node2D" unique_id=304857572]
 
 [node name="BungeeBackground" type="Sprite2D" parent="." unique_id=1461314059]
-position = Vector2(546.00006, 204.00003)
-scale = Vector2(1.3, 1.3)
+position = Vector2(980, 540)
+scale = Vector2(2.1, 2.1)
 texture = ExtResource("1_2twes")
 
-[node name="CustomerTalkbox" type="Node2D" parent="." unique_id=240780355]
-position = Vector2(552, 93.999985)
-scale = Vector2(0.40000004, 0.40000004)
+[node name="CustomerTalkbox" type="Node2D" parent="." unique_id=1647507048]
 
-[node name="Talkbox2" type="Sprite2D" parent="CustomerTalkbox" unique_id=959080708]
-position = Vector2(77.5, 565.00006)
-scale = Vector2(0.74999994, 0.74999994)
+[node name="Talkbox2" type="Sprite2D" parent="CustomerTalkbox" unique_id=316388383]
+position = Vector2(1012.99994, 813)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_6ll2o")
 flip_h = true
 
-[node name="TextEdit2" type="TextEdit" parent="CustomerTalkbox" unique_id=539182705]
-offset_left = -194.99988
-offset_top = 390.0
-offset_right = 347.5
-offset_bottom = 687.5
+[node name="TextEdit2" type="TextEdit" parent="CustomerTalkbox" unique_id=1990299726]
+offset_left = 804.9999
+offset_top = 664.0
+offset_right = 1347.4998
+offset_bottom = 961.5
+scale = Vector2(0.8, 0.8)
+metadata/_edit_use_anchors_ = true
 
-[node name="MyTalkbox" type="Node2D" parent="." unique_id=929204861]
+[node name="MyTalkbox" type="Node2D" parent="." unique_id=779489565]
 
-[node name="Talkbox" type="Sprite2D" parent="MyTalkbox" unique_id=213684764]
-position = Vector2(552, 94)
-scale = Vector2(0.4, 0.4)
+[node name="Talkbox" type="Sprite2D" parent="MyTalkbox" unique_id=1543124468]
+position = Vector2(1007, 281)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_6ll2o")
 
-[node name="TextEdit" type="TextEdit" parent="MyTalkbox" unique_id=978372302]
-offset_left = 399.0
-offset_top = 1.0
-offset_right = 674.0
-offset_bottom = 154.0
+[node name="TextEdit" type="TextEdit" parent="MyTalkbox" unique_id=1716045234]
+offset_left = 748.0
+offset_top = 130.0
+offset_right = 1241.0
+offset_bottom = 354.0
 
 [node name="Customer" parent="." unique_id=1501992636 instance=ExtResource("3_6ll2o")]
-position = Vector2(873, 473)
-scale = Vector2(0.4, 0.4)
+position = Vector2(1520, 670)
+scale = Vector2(0.6, 0.6)
 
 [node name="Me" parent="." unique_id=780189449 instance=ExtResource("4_p3fes")]
-position = Vector2(258.00006, 363)
-scale = Vector2(0.3, 0.3)
+position = Vector2(500, 600)
+scale = Vector2(0.5, 0.5)
