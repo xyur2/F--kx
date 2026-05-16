@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://rdjia7h3en18" path="res://asset/bungee_background.jpg" id="1_2twes"]
 [ext_resource type="PackedScene" uid="uid://uxg8ndxwqart" path="res://scene/customer.tscn" id="3_6ll2o"]
+[ext_resource type="Script" uid="uid://i5yj3gb7nfpc" path="res://script/linetext.gd" id="3_p3fes"]
 [ext_resource type="Texture2D" uid="uid://cbappd0t88pr0" path="res://asset/talkbox.png" id="4_6ll2o"]
 [ext_resource type="PackedScene" uid="uid://bq5ol7s0jrkkj" path="res://scene/me.tscn" id="4_p3fes"]
 
@@ -20,12 +21,13 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_6ll2o")
 flip_h = true
 
-[node name="TextEdit2" type="TextEdit" parent="CustomerTalkbox" unique_id=1990299726]
+[node name="TextEdit2" type="Label" parent="CustomerTalkbox" unique_id=503467410]
 offset_left = 804.9999
 offset_top = 664.0
 offset_right = 1347.4998
 offset_bottom = 961.5
 scale = Vector2(0.8, 0.8)
+script = ExtResource("3_p3fes")
 metadata/_edit_use_anchors_ = true
 
 [node name="MyTalkbox" type="Node2D" parent="." unique_id=779489565]
@@ -35,11 +37,12 @@ position = Vector2(1007, 281)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_6ll2o")
 
-[node name="TextEdit" type="TextEdit" parent="MyTalkbox" unique_id=1716045234]
+[node name="TextEdit" type="Label" parent="MyTalkbox" unique_id=918049258]
 offset_left = 748.0
 offset_top = 130.0
 offset_right = 1241.0
 offset_bottom = 354.0
+script = ExtResource("3_p3fes")
 
 [node name="Customer" parent="." unique_id=1501992636 instance=ExtResource("3_6ll2o")]
 position = Vector2(1520, 670)
