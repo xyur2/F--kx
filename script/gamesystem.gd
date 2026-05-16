@@ -125,10 +125,10 @@ func day_process():
 		lines = [
 			["me", "어서오세요!\n번지점프 하러 오셨나요?"],
 			["customer", customer.get_line1()],
-			["me", "일단 여기 안전 서류부터 좀 작성해 주세요."],
+			["me", "일단 여기 안전 서류부터\n좀 작성해 주세요."],
 			["customer", customer.get_line2()],
-			["me", "음, 서류 확인했어요! 그럼 간단한 안전교육을 진행해 볼게요."],
-			["me", "뛰어내리는 과정에서 줄이 몸을 감쌀 수 있어요."],
+			["me", "음, 서류 확인했어요!\n그럼 간단한 안전교육을 진행해 볼게요."],
+			["me", "뛰어내리는 과정에서\n줄이 몸을 감쌀 수 있어요."],
 			["me", "이때 목이 졸리지 않게\n머리를 팔로 감싸 주셔야 해요."],
 			["customer", customer.get_line3()],
 			["me", "물론 저희 번지점프대에선\n한번도 사고가 난 적이\n없답니다!"],
@@ -181,9 +181,9 @@ func day_process():
 		var joke_2 = joke.new()
 		var joke_3 = joke.new()
 		
-		var button1 = get_node("Joke/Button")
-		var button2 = get_node("Joke/Button2")
-		var button3 = get_node("Joke/Button3")
+		var button1 = get_node("Joke/Button/Label")
+		var button2 = get_node("Joke/Button2/Label")
+		var button3 = get_node("Joke/Button3/Label")
 		button1.text = joke_1.get_joke_name()
 		button2.text = joke_2.get_joke_name()
 		button3.text = joke_3.get_joke_name()
