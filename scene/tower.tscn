@@ -1,43 +1,43 @@
-[gd_scene load_steps=8 format=3 uid="uid://dreyytgky8r1w"]
+[gd_scene format=3 uid="uid://dreyytgky8r1w"]
 
 [ext_resource type="Texture2D" uid="uid://ct2ktklpyoyhp" path="res://asset/tower_1.png" id="1_jlhg4"]
-[ext_resource type="Script" uid="uid://c0vxwvd0v0r2m" path="res://script/tower.gd" id="1_jo41p"]
+[ext_resource type="Script" path="res://tower.gd" id="1_jo41p"]
 [ext_resource type="PackedScene" uid="uid://uxg8ndxwqart" path="res://scene/customer.tscn" id="3_upbbx"]
 [ext_resource type="PackedScene" uid="uid://bq5ol7s0jrkkj" path="res://scene/me.tscn" id="4_tawd1"]
 [ext_resource type="Texture2D" uid="uid://dx5r5xokmt44w" path="res://asset/tower_2.png" id="4_upbbx"]
 [ext_resource type="Texture2D" uid="uid://bk5pt15126blq" path="res://asset/textbox.png" id="5_upbbx"]
 [ext_resource type="Texture2D" uid="uid://cghywordim71h" path="res://asset/recorder.png" id="7_nrw1k"]
 
-[node name="Tower" type="Node2D"]
+[node name="Tower" type="Node2D" unique_id=511604593]
 script = ExtResource("1_jo41p")
 
-[node name="TowerBackground" type="Sprite2D" parent="."]
+[node name="TowerBackground" type="Sprite2D" parent="." unique_id=1608125334]
 position = Vector2(980, 540)
 scale = Vector2(0.84, 0.84)
 texture = ExtResource("1_jlhg4")
 
-[node name="Me" parent="." instance=ExtResource("4_tawd1")]
+[node name="Me" parent="." unique_id=281900061 instance=ExtResource("4_tawd1")]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 
-[node name="TowerBackground2" type="Sprite2D" parent="."]
+[node name="TowerBackground2" type="Sprite2D" parent="." unique_id=1354767023]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("4_upbbx")
 
-[node name="Customer" parent="." instance=ExtResource("3_upbbx")]
+[node name="Customer" parent="." unique_id=1677683360 instance=ExtResource("3_upbbx")]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 
-[node name="Talkbox" type="Sprite2D" parent="."]
+[node name="Talkbox" type="Sprite2D" parent="." unique_id=158700143]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("5_upbbx")
 
-[node name="CustomerTalkbox" type="Node2D" parent="."]
+[node name="CustomerTalkbox" type="Node2D" parent="." unique_id=211280829]
 position = Vector2(61, -293)
 
-[node name="TextEdit2" type="Label" parent="CustomerTalkbox"]
+[node name="TextEdit2" type="Label" parent="CustomerTalkbox" unique_id=346169456]
 modulate = Color(0, 0, 0, 1)
 offset_left = 830.0
 offset_top = 788.0
@@ -50,10 +50,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="MyTalkbox" type="Node2D" parent="."]
+[node name="MyTalkbox" type="Node2D" parent="." unique_id=1422979398]
 position = Vector2(-93, -174)
 
-[node name="TextEdit" type="Label" parent="MyTalkbox"]
+[node name="TextEdit" type="Label" parent="MyTalkbox" unique_id=441048883]
 modulate = Color(0, 0, 0, 1)
 offset_left = 1062.0
 offset_top = 246.0
@@ -66,13 +66,13 @@ vertical_alignment = 1
 autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="recorder" type="Sprite2D" parent="."]
+[node name="recorder" type="Sprite2D" parent="." unique_id=661506906]
 position = Vector2(651, 1265)
 scale = Vector2(0.5733051, 0.69073206)
 texture = ExtResource("7_nrw1k")
 offset = Vector2(0, -1000)
 
-[node name="Label" type="Label" parent="recorder"]
+[node name="Label" type="Label" parent="recorder" unique_id=868641420]
 anchors_preset = -1
 anchor_left = 0.21400002
 anchor_top = 0.88600004
@@ -86,7 +86,7 @@ theme_override_font_sizes/font_size = 35
 text = "4"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="recorder"]
+[node name="Label2" type="Label" parent="recorder" unique_id=191700820]
 anchors_preset = -1
 anchor_left = 0.21400002
 anchor_top = 0.88600004
@@ -100,7 +100,7 @@ theme_override_font_sizes/font_size = 35
 text = "4"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="recorder"]
+[node name="Label3" type="Label" parent="recorder" unique_id=872585016]
 anchors_preset = -1
 anchor_left = 0.21400002
 anchor_top = 0.88600004

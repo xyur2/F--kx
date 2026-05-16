@@ -6,6 +6,7 @@ var yesterday
 var bungee_pos = Vector2(0, 2000)
 var tower_pos = Vector2(0, 0)
 var start_pos = Vector2(0, 4000)
+var dayend_pos = Vector2(0, 6000)
 var camera
 var customer
 var is_animating = false
@@ -92,11 +93,45 @@ func start_game():
 		yesterday = today
 		today = day.new()
 		today.set_goal(yesterday.get_scream(), yesterday.get_customer())
-		cur.text=today.get_customer()
-		fin.text=today.get_goal_customer()
-		scream.text=today.get_scream()
-		print(i, "일차 완료. 내일 손님 수 : ", today.get_goal_customer())
-		
+		cur.text=str(today.get_customer())
+		fin.text=str(today.get_goal_customer())
+		scream.text=str(today.get_scream())
+		await endday(yesterday.get_scream(), yesterday.get_customer())
+
+func endday(score, customer):
+	camera.offset = dayend_pos
+	var final_score
+	var textbox = get_node("Dayend/Label")
+	var ment
+	var ment_list
+	if customer == 1:
+		final_score = min(score, 2)/2 * 100
+	else:
+		final_score = min(score, customer*4)/(customer*4)*100
+	if final_score >= 75:
+		ment_list = [
+			"멋진 하루였어!",
+			"손님들의 비명소리가 듣기 좋네~",
+			"손님들이 더 늘어날 것 같아!"
+		]
+	elif final_score >= 50:
+		ment_list = [
+			"평범한 하루였어.",
+			"손님이 더 늘어나면 좋겠어!",
+			"손님들을 더 놀라게 하고싶은데.."
+		]
+	else:
+		ment_list = [
+			"좀 더 분발해야겠는걸..",
+			"손님이 더 줄어들면 곤란해!",
+			"손님 응대에는 영 소질이 없나봐.."
+		]
+	ment = ment_list.pick_random()
+	var text = "오늘 손님 수 : " + str(customer) + "\n오늘의 점수 : " + str(snapped(final_score, 0.01)) + "점"+ "\n\n"+ment
+	textbox.text = text
+	await transition.transition_out()         # 닫기
+	await get_tree().create_timer(3.0).timeout
+	await transition.transition_in()         # 열기
 
 func day_process():
 	var customer_num
@@ -111,10 +146,10 @@ func day_process():
 		lines = [
 			["me", "어서오세요!\n번지점프 하러 오셨나요?"],
 			["customer", customer.get_line1()],
-			["me", "일단 여기 안전 서류부터 좀 작성해 주세요."],
+			["me", "일단 여기 안전 서류부터\n좀 작성해 주세요."],
 			["customer", customer.get_line2()],
-			["me", "음, 서류 확인했어요! 그럼 간단한 안전교육을 진행해 볼게요."],
-			["me", "뛰어내리는 과정에서 줄이 몸을 감쌀 수 있어요."],
+			["me", "음, 서류 확인했어요!\n그럼 간단한 안전교육을 진행해 볼게요."],
+			["me", "뛰어내리는 과정에서\n줄이 몸을 감쌀 수 있어요."],
 			["me", "이때 목이 졸리지 않게\n머리를 팔로 감싸 주셔야 해요."],
 			["customer", customer.get_line3()],
 			["me", "물론 저희 번지점프대에선\n한번도 사고가 난 적이\n없답니다!"],
@@ -132,7 +167,7 @@ func day_process():
 		
 		cur.text=str(today.get_customer())
 		fin.text=str(today.get_goal_customer())
-		scream.text=str(today.get_scream())
+		scream.text=str(snapped(today.get_scream(), 0.01))
 
 		while (line_num_now < line_num_total):
 			await continued
@@ -159,15 +194,22 @@ func day_process():
 		joke_scene.visible = true
 		pointer.position = Vector2(980.0, 540.0)
 		set_shape(bungee_customer_animation, customer.get_shape(), 2)
-		await transition.transition_out()         # 열기
+		
 		
 		# ----------- 장난 선택 장면 --------------
 		joke_me_animation.play("smile")
 		var joke_1 = joke.new()
 		var joke_2 = joke.new()
 		var joke_3 = joke.new()
+		
+		var button1 = get_node("Joke/Button/Label")
+		var button2 = get_node("Joke/Button2/Label")
+		var button3 = get_node("Joke/Button3/Label")
+		button1.text = joke_1.get_joke_name()
+		button2.text = joke_2.get_joke_name()
+		button3.text = joke_3.get_joke_name()
+		await transition.transition_out()         # 열기
 		await button_chosen
-		joke_me_animation.play("default")
 		match chosen_button:
 			1: joke_final = joke_1
 			2: joke_final = joke_2
@@ -265,7 +307,6 @@ func score_bar(score):
 	is_animating = false
 	var personal_score = carculate_score(score, customer.get_personality())
 	today.increase_scream(personal_score)
-	today.increase_customer()
 	emit_signal("fallen")
 
 func set_shape(where, chr, num):
