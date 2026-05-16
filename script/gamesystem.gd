@@ -18,6 +18,7 @@ var joke_scene
 var chosen_button = 0
 signal continued
 signal button_chosen
+signal graph_signal
 
 func _ready():
 	state = "ongame"
@@ -117,6 +118,7 @@ func day_process():
 			else:
 				print("speaker 지정에 문제 발생")
 			
+			graph_signal.emit(line_num_now)
 			line_num_now += 1
 		print("손님 접대 완료")
 

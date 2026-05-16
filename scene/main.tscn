@@ -1,24 +1,25 @@
-[gd_scene format=3 uid="uid://w83ojhr5p5mu"]
+[gd_scene load_steps=5 format=3 uid="uid://w83ojhr5p5mu"]
 
 [ext_resource type="PackedScene" uid="uid://trxgahumbk60" path="res://scene/bungee.tscn" id="1_v0l8b"]
 [ext_resource type="Script" uid="uid://djovcydqarqog" path="res://script/gamesystem.gd" id="1_wp4xf"]
 [ext_resource type="PackedScene" uid="uid://dreyytgky8r1w" path="res://scene/tower.tscn" id="2_wp4xf"]
-[ext_resource type="PackedScene" uid="uid://daanmlo268yyd" path="res://scene/joke.tscn" id="4_brvut"]
+[ext_resource type="PackedScene" path="res://scene/joke.tscn" id="4_brvut"]
 
-[node name="Main" type="Node2D" unique_id=2093430170]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_wp4xf")
 
-[node name="Bungee" parent="." unique_id=304857572 instance=ExtResource("1_v0l8b")]
+[node name="Bungee" parent="." instance=ExtResource("1_v0l8b")]
 position = Vector2(3000, 0)
 
-[node name="Tower" parent="." unique_id=1629670762 instance=ExtResource("2_wp4xf")]
+[node name="Tower" parent="." instance=ExtResource("2_wp4xf")]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=753121178]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(980, 540)
 
-[node name="Joke" parent="." unique_id=834924065 instance=ExtResource("4_brvut")]
+[node name="Joke" parent="." instance=ExtResource("4_brvut")]
 position = Vector2(3000, 0)
 
+[connection signal="graph_signal" from="." to="Bungee" method="_on_main_graph_signal"]
 [connection signal="pressed" from="Joke/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Joke/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Joke/Button3" to="." method="_on_button_3_pressed"]

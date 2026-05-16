@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://daanmlo268yyd"]
+[gd_scene load_steps=0 format=3 uid="uid://daanmlo268yyd"]
 
 [ext_resource type="Texture2D" uid="uid://dlenbxbwl5sw8" path="res://asset/thinkbox.png" id="1_iej72"]
 [ext_resource type="PackedScene" uid="uid://bq5ol7s0jrkkj" path="res://scene/me.tscn" id="2_vgkxu"]

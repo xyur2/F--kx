@@ -1,12 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://trxgahumbk60"]
 
 [ext_resource type="Texture2D" uid="uid://rdjia7h3en18" path="res://asset/bungee_background.jpg" id="1_2twes"]
+[ext_resource type="Script" uid="uid://c7iqvusji37df" path="res://script/bungee.gd" id="1_n6frx"]
 [ext_resource type="PackedScene" uid="uid://uxg8ndxwqart" path="res://scene/customer.tscn" id="3_6ll2o"]
 [ext_resource type="Texture2D" uid="uid://cbappd0t88pr0" path="res://asset/talkbox.png" id="4_6ll2o"]
 [ext_resource type="PackedScene" uid="uid://bq5ol7s0jrkkj" path="res://scene/me.tscn" id="4_p3fes"]
 [ext_resource type="PackedScene" uid="uid://btw5ign14qvsq" path="res://scene/line_2d.tscn" id="6_n6frx"]
 
 [node name="Bungee" type="Node2D"]
+script = ExtResource("1_n6frx")
 
 [node name="BungeeBackground" type="Sprite2D" parent="."]
 visible = false
@@ -81,5 +83,6 @@ text = "대사
 버튼
 "
 
+[connection signal="graph_number" from="." to="Line2D" method="_on_bungee_graph_number"]
 [connection signal="timeout" from="Line2D/Timer" to="Line2D" method="_on_timer_timeout"]
 [connection signal="pressed" from="Line2D/surprise" to="Line2D" method="_on_surprise_pressed"]
