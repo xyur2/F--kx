@@ -7,7 +7,7 @@ var bungee_pos = Vector2(0, 2000)
 var tower_pos = Vector2(0, 0)
 var start_pos = Vector2(0, 4000)
 var dayend_pos = Vector2(0, 6000)
-var endiing_pos = Vector2(0, 8000)
+var ending_pos = Vector2(0, 8000)
 var camera
 var customer
 var is_animating = false
