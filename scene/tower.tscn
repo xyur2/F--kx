@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dreyytgky8r1w"]
+[gd_scene load_steps=9 format=3 uid="uid://dreyytgky8r1w"]
 
 [ext_resource type="Texture2D" uid="uid://ct2ktklpyoyhp" path="res://asset/tower_1.png" id="1_jlhg4"]
 [ext_resource type="Script" uid="uid://c0vxwvd0v0r2m" path="res://script/tower.gd" id="1_nhyuu"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bq5ol7s0jrkkj" path="res://scene/me.tscn" id="4_tawd1"]
 [ext_resource type="Texture2D" uid="uid://dx5r5xokmt44w" path="res://asset/tower_2.png" id="4_upbbx"]
 [ext_resource type="Texture2D" uid="uid://bk5pt15126blq" path="res://asset/textbox.png" id="5_upbbx"]
+[ext_resource type="FontFile" uid="uid://dpmd0flr32atc" path="res://asset/font_bold.ttf" id="7_jo41p"]
 [ext_resource type="Texture2D" uid="uid://cghywordim71h" path="res://asset/recorder.png" id="7_nrw1k"]
 
 [node name="Tower" type="Node2D"]
@@ -44,6 +45,7 @@ offset_top = 788.0
 offset_right = 1372.4999
 offset_bottom = 1085.5
 scale = Vector2(0.8, 0.8)
+theme_override_fonts/font = ExtResource("7_jo41p")
 theme_override_font_sizes/font_size = 50
 text = "..."
 horizontal_alignment = 1
@@ -59,6 +61,7 @@ offset_left = 1062.0
 offset_top = 246.0
 offset_right = 1662.0
 offset_bottom = 516.0
+theme_override_fonts/font = ExtResource("7_jo41p")
 theme_override_font_sizes/font_size = 50
 text = "..."
 horizontal_alignment = 1
@@ -82,6 +85,7 @@ offset_left = -1291.707
 offset_top = -1602.2434
 offset_right = -1084.1387
 offset_bottom = -1527.1248
+theme_override_fonts/font = ExtResource("7_jo41p")
 theme_override_font_sizes/font_size = 35
 text = "4"
 horizontal_alignment = 1
@@ -96,6 +100,7 @@ offset_left = -1185.3064
 offset_top = -1602.2434
 offset_right = -977.738
 offset_bottom = -1527.1248
+theme_override_fonts/font = ExtResource("7_jo41p")
 theme_override_font_sizes/font_size = 35
 text = "4"
 horizontal_alignment = 1
@@ -110,6 +115,7 @@ offset_left = -698.6544
 offset_top = -1612.3776
 offset_right = -402.1281
 offset_bottom = -1542.8861
+theme_override_fonts/font = ExtResource("7_jo41p")
 theme_override_font_sizes/font_size = 50
 text = "4"
 horizontal_alignment = 1

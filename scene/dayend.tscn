@@ -1,16 +1,16 @@
-[gd_scene format=3 uid="uid://ceqjy3b18ihhf"]
+[gd_scene load_steps=3 format=3 uid="uid://ceqjy3b18ihhf"]
 
 [ext_resource type="Texture2D" uid="uid://exk133bp45i6" path="res://asset/endday.png" id="1_2tlyh"]
 [ext_resource type="FontFile" uid="uid://dpmd0flr32atc" path="res://asset/font_bold.ttf" id="2_splet"]
 
-[node name="Dayend" type="Node2D" unique_id=769970450]
+[node name="Dayend" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926224056]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("1_2tlyh")
 
-[node name="Label" type="Label" parent="." unique_id=1674616294]
+[node name="Label" type="Label" parent="."]
 offset_left = 667.0
 offset_top = 271.0
 offset_right = 1554.0

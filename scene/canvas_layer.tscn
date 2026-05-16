@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bjbdmbela6fa1"]
+[gd_scene load_steps=2 format=3 uid="uid://bjbdmbela6fa1"]
+
+[ext_resource type="FontFile" uid="uid://dpmd0flr32atc" path="res://asset/font_bold.ttf" id="1_xp8f4"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -13,5 +15,6 @@ offset_left = 106.0
 offset_top = 40.0
 offset_right = 685.0
 offset_bottom = 313.0
+theme_override_fonts/font = ExtResource("1_xp8f4")
 theme_override_font_sizes/font_size = 200
 text = "Pause"
