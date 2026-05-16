@@ -21,8 +21,18 @@ func get_scream():
 func get_goal_scream():
 	return scream_score_goal
 	
-func set_goal(score, customer):
-	scream_score_goal = score
-	customer_num_goal = customer
+func set_goal(yesterday_score, yesterday_customer):
+	var object_score
+	if yesterday_customer == 1:
+		object_score = 2
+	else:
+		object_score = yesterday_customer * 4
+	if yesterday_score <= object_score*0.3:
+		customer_num_goal = yesterday_customer - randi_range(1, 3)
+	elif yesterday_customer <= object_score*0.6:
+		customer_num_goal = yesterday_customer
+	else:
+		customer_num_goal = yesterday_customer + randi_range(1, 3)
+
 func set_day(yesterday):
 	day_num = yesterday

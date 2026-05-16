@@ -23,10 +23,10 @@ signal graph_signal
 func _ready():
 	state = "ongame"
 	camera = get_node("Camera2D")
-	tower_my_line = get_node("Tower/CustomerTalkbox/TextEdit2")
-	tower_customer_line = get_node("Tower/MyTalkbox/TextEdit")
-	bungee_my_line = get_node("Bungee/CustomerTalkbox/TextEdit2")
-	bungee_customer_line = get_node("Bungee/MyTalkbox/TextEdit")
+	tower_my_line = get_node("Tower/MyTalkbox/TextEdit")
+	tower_customer_line = get_node("Tower/CustomerTalkbox/TextEdit2")
+	bungee_my_line = get_node("Bungee/MyTalkbox/TextEdit2")
+	bungee_customer_line = get_node("Bungee/CustomerTalkbox/TextEdit2")
 	joke_scene = get_node("Joke")
 	joke_scene.visible = false
 	print("씬 불러오기 성공")
@@ -138,7 +138,6 @@ func set_line_bungee_me(line):
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("continue"):
 		emit_signal("continued")
-
 
 func _on_button_pressed() -> void:
 	chosen_button = 1
