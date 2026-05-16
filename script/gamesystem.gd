@@ -111,7 +111,7 @@ func day_process():
 		line_num_total = lines.size()
 		today.increase_customer()
 		camera.offset = tower_pos
-		customer.set_shape1()
+		set_shape(tower_customer_animation, customer.get_shape(), 1)
 		await transition.transition_out()         # 열기
 		line_num_now = 0
 		set_line_bungee_me("...")
@@ -141,7 +141,7 @@ func day_process():
 		camera.offset = bungee_pos
 		joke_scene.visible = true
 		pointer.position = Vector2(980.0, 540.0)
-		customer.set_shape2()
+		set_shape(bungee_customer_animation, customer.get_shape(), 2)
 		await transition.transition_out()         # 열기
 		
 		# ----------- 장난 선택 장면 --------------
@@ -179,7 +179,7 @@ func day_process():
 			elif speaker == "customer":
 				set_line_bungee_customer(line_now)
 				bungee_me_animation.play("default")
-				customer.set_shape3()
+				set_shape(bungee_customer_animation, customer.get_shape(), 3)
 			else:
 				print("speaker 지정에 문제 발생")
 			line_num_now += 1
@@ -187,8 +187,8 @@ func day_process():
 		bungee_me_animation.play("smile")
 		await bungee
 		bungee_hand.play("bye")
+		set_shape(bungee_customer_animation, customer.get_shape(), 4)
 		var customer_tween = create_tween()
-		customer.set_shape4()
 		var new_pos = Vector2(bungee_customer.position.x, bungee_customer.position.y+1500)
 		var pos = Vector2(bungee_customer.position.x, bungee_customer.position.y)
 		customer_tween.tween_property(bungee_customer, "position", new_pos, 1)
@@ -248,6 +248,26 @@ func score_bar(score):
 	print("신호")
 	is_animating = false
 	emit_signal("fallen")
+
+func set_shape(where, chr, num):
+	if chr == 1:
+		match num:
+			1 : where.play("c1_1")
+			2 : where.play("c1_2")
+			3 : where.play("c1_3")
+			4 : where.play("c1_4")
+	elif chr == 2:
+		match num:
+			1 : where.play("c2_1")
+			2 : where.play("c2_2")
+			3 : where.play("c2_3")
+			4 : where.play("c2_4")
+	else:
+		match num:
+			1 : where.play("c3_1")
+			2 : where.play("c3_2")
+			3 : where.play("c3_3")
+			4 : where.play("c3_4")
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("continue"):
