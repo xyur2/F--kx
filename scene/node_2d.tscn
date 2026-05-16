@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://30ajs4c20xfe"]
+[gd_scene load_steps=5 format=3 uid="uid://30ajs4c20xfe"]
 
 [ext_resource type="Script" uid="uid://cj2da45n3234u" path="res://script/node_2d.gd" id="1_ppd22"]
 [ext_resource type="PackedScene" uid="uid://btw5ign14qvsq" path="res://scene/line_2d.tscn" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://cbappd0t88pr0" path="res://asset/talkbox.png" id="3_3cebx"]
+[ext_resource type="Script" uid="uid://cqq0x8lpxeg7i" path="res://scene/talkbox.gd" id="3_tytcy"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(0, 649)
@@ -25,15 +26,18 @@ text = "대사
 버튼
 "
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="talkbox1" type="Node2D" parent="."]
+visible = false
 position = Vector2(-15, -684)
+script = ExtResource("3_tytcy")
+mine = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+[node name="Sprite2D" type="Sprite2D" parent="talkbox1"]
 position = Vector2(118, 93)
 scale = Vector2(0.18333334, 0.1425)
 texture = ExtResource("3_3cebx")
 
-[node name="Label" type="Label" parent="Node2D"]
+[node name="Label" type="Label" parent="talkbox1"]
 offset_left = -283.0
 offset_top = 59.0
 offset_right = 514.0
@@ -44,35 +48,19 @@ text = "손님 도대체
 언제 뛰실 거에요?"
 horizontal_alignment = 1
 
-[node name="Node2D2" type="Node2D" parent="."]
-position = Vector2(-15, -684)
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2D2"]
-position = Vector2(118, 93)
-scale = Vector2(0.18333334, 0.1425)
-texture = ExtResource("3_3cebx")
-
-[node name="Label" type="Label" parent="Node2D2"]
-offset_left = -283.0
-offset_top = 59.0
-offset_right = 514.0
-offset_bottom = 421.96497
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
-text = "손님 도대체 
-언제 뛰실 거에요?"
-horizontal_alignment = 1
-
-[node name="Node2D3" type="Node2D" parent="."]
+[node name="talkbox2" type="Node2D" parent="."]
+visible = false
 position = Vector2(196, -605)
+script = ExtResource("3_tytcy")
+mine = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D3"]
+[node name="Sprite2D" type="Sprite2D" parent="talkbox2"]
 position = Vector2(118, 93)
 scale = Vector2(0.18333334, 0.1425)
 texture = ExtResource("3_3cebx")
 flip_h = true
 
-[node name="Label" type="Label" parent="Node2D3"]
+[node name="Label" type="Label" parent="talkbox2"]
 offset_left = -272.0
 offset_top = 75.0
 offset_right = 525.0
@@ -82,15 +70,18 @@ theme_override_font_sizes/font_size = 15
 text = "못뛰겠어요.."
 horizontal_alignment = 1
 
-[node name="Node2D4" type="Node2D" parent="."]
+[node name="talkbox3" type="Node2D" parent="."]
+visible = false
 position = Vector2(-11, -484)
+script = ExtResource("3_tytcy")
+mine = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D4"]
+[node name="Sprite2D" type="Sprite2D" parent="talkbox3"]
 position = Vector2(118, 93)
 scale = Vector2(0.18333334, 0.1425)
 texture = ExtResource("3_3cebx")
 
-[node name="Label" type="Label" parent="Node2D4"]
+[node name="Label" type="Label" parent="talkbox3"]
 offset_left = -282.0
 offset_top = 61.0
 offset_right = 515.0
