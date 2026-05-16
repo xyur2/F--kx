@@ -13,7 +13,7 @@ func _ready():
 	Day.set_day(1)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
-func _process(delta: float) -> void:
-	cur.text(str(Day.get_customer()))
-	fin.text(str(Day.get_goal_customer()))
-	scream.text(str(Day.get_scream()))
+#func _process(delta: float) -> void:
+	#cur.text(str(Day.get_customer()))
+	#fin.text(str(Day.get_goal_customer()))
+	#scream.text(str(Day.get_scream()))
