@@ -42,7 +42,17 @@ var ending
 var story_maker
 var shouting
 var ingame_bgm = preload("res://audio/오프닝 브금 후보1.mp3")
+var mauga = preload("res://audio/마우가.wav")
+var screaming = preload("res://audio/비명소리.mp3")
+var headwoman = preload("res://audio/머리 감싸는 인간여자.wav")
+var badroad = preload("res://audio/울퉁불퉁.wav")
+var runman = preload("res://audio/뛰는사나에.wav")
 var bgm_player
+var mauga_player
+var screaming_player
+var headwoman_player
+var badroad_player
+var runman_player
 
 # Called when the node enters the scene tree for the first time.
 
@@ -79,6 +89,12 @@ func _ready():
 	transition = get_node("CanvasLayer/Transition")
 	shouting = get_node("Bungee/shouting")
 	bgm_player = get_node("AudioStreamPlayer")
+	mauga_player = get_node("mauga")
+	screaming_player = get_node("screaming")
+	headwoman_player = get_node("headwoman")
+	badroad_player = get_node("badroad")
+	runman_player = get_node("runman")
+	
 	if bgm_player:
 		bgm_player.play()
 	
@@ -173,7 +189,6 @@ func day_process():
 	var line_num_now
 
 	print("손님 접대 시작")
-	bgm_player.stop()
 	customer_num = today.get_goal_customer()
 	for i in range(customer_num):
 		customer = Customer.new()
@@ -213,6 +228,11 @@ func day_process():
 			elif speaker == "customer":
 				set_line_tower_customer(line_now)
 				tower_me_animation.play("default")
+				match line_now:
+					"뛰는 싸나에" : runman_player.play()
+					"울퉁불퉁" : badroad_player.play()
+					"머리 감싸는 인간 여자" : headwoman_player.play()
+					"알아" : mauga_player.play()
 			else:
 				print("speaker 지정에 문제 발생")
 			
@@ -228,7 +248,6 @@ func day_process():
 		joke_scene.visible = true
 		pointer.position = Vector2(980.0, 540.0)
 		set_shape(bungee_customer_animation, customer.get_shape(), 2)
-		
 		
 		# ----------- 장난 선택 장면 --------------
 		joke_me_animation.play("smile")
@@ -280,6 +299,7 @@ func day_process():
 		bungee_me_animation.play("smile")
 		await bungee
 		bungee_hand.play("bye")
+		screaming_player.play()
 		set_shape(bungee_customer_animation, customer.get_shape(), 4)
 		var customer_tween = create_tween()
 		var new_pos = Vector2(bungee_customer.position.x, bungee_customer.position.y+1500)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://trxgahumbk60"]
+[gd_scene format=3 uid="uid://trxgahumbk60"]
 
 [ext_resource type="Script" uid="uid://6akto83cd610" path="res://script/start.gd" id="1_4c15k"]
 [ext_resource type="Texture2D" uid="uid://d2sollcw132jy" path="res://asset/bungee_1.png" id="1_p3fes"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://btw5ign14qvsq" path="res://scene/line_2d.tscn" id="6_n6frx"]
 [ext_resource type="Texture2D" uid="uid://bk5pt15126blq" path="res://asset/textbox.png" id="11_4c15k"]
 [ext_resource type="FontFile" uid="uid://dpmd0flr32atc" path="res://asset/font_bold.ttf" id="12_64ene"]
+[ext_resource type="Texture2D" uid="uid://cbj22v8d3es15" path="res://asset/bungee.png" id="13_wi6ap"]
+[ext_resource type="Texture2D" uid="uid://bhybvi8ivjsy1" path="res://asset/graph.png" id="14_d2e1j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2jvip"]
 animations = [{
@@ -32,54 +34,59 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Bungee" type="Node2D"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1v1x0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_51lk7"]
+
+[node name="Bungee" type="Node2D" unique_id=1621321583]
 script = ExtResource("1_4c15k")
 
-[node name="background" type="Sprite2D" parent="."]
+[node name="background" type="Sprite2D" parent="." unique_id=1494474949]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("2_64ene")
 
-[node name="background2" type="Sprite2D" parent="."]
+[node name="background2" type="Sprite2D" parent="." unique_id=1947807859]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("2_64ene")
 flip_h = true
 
-[node name="background3" type="Sprite2D" parent="."]
+[node name="background3" type="Sprite2D" parent="." unique_id=1548819895]
+visible = false
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("3_6faif")
 
-[node name="BungeeBackground" type="Sprite2D" parent="."]
+[node name="BungeeBackground" type="Sprite2D" parent="." unique_id=755275675]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("1_p3fes")
 
-[node name="BungeeBackground2" type="Sprite2D" parent="."]
+[node name="BungeeBackground2" type="Sprite2D" parent="." unique_id=428199347]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("2_vrbfy")
 
-[node name="Me" parent="." instance=ExtResource("4_p3fes")]
+[node name="Me" parent="." unique_id=1798912566 instance=ExtResource("4_p3fes")]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1427792277]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 sprite_frames = SubResource("SpriteFrames_2jvip")
 
-[node name="Customer" parent="." instance=ExtResource("3_6ll2o")]
+[node name="Customer" parent="." unique_id=1781362016 instance=ExtResource("3_6ll2o")]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 
-[node name="Talkbox" type="Sprite2D" parent="."]
+[node name="Talkbox" type="Sprite2D" parent="." unique_id=1355196632]
 position = Vector2(980, 540)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("11_4c15k")
 
-[node name="Line2D" parent="." instance=ExtResource("6_n6frx")]
+[node name="Line2D" parent="." unique_id=1824862920 instance=ExtResource("6_n6frx")]
 visible = false
 z_index = 0
 points = PackedVector2Array(0, 1080)
@@ -87,19 +94,13 @@ width = 10.0
 round_precision = 10
 last_position = Vector2(0, -1100)
 
-[node name="Timer" type="Timer" parent="Line2D"]
+[node name="Timer" type="Timer" parent="Line2D" unique_id=1878058809]
 wait_time = 0.3
 autostart = true
 
-[node name="BungeeButton" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-theme_override_font_sizes/font_size = 71
-text = "BUNGEE"
+[node name="CustomerTalkbox" type="Node2D" parent="." unique_id=391099362]
 
-[node name="CustomerTalkbox" type="Node2D" parent="."]
-
-[node name="TextEdit2" type="Label" parent="CustomerTalkbox"]
+[node name="TextEdit2" type="Label" parent="CustomerTalkbox" unique_id=1326192431]
 modulate = Color(0, 0, 0, 1)
 offset_left = 904.0
 offset_top = 508.00003
@@ -114,9 +115,9 @@ vertical_alignment = 1
 autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="MyTalkbox" type="Node2D" parent="."]
+[node name="MyTalkbox" type="Node2D" parent="." unique_id=854484281]
 
-[node name="TextEdit" type="Label" parent="MyTalkbox"]
+[node name="TextEdit" type="Label" parent="MyTalkbox" unique_id=797572985]
 modulate = Color(0, 0, 0, 1)
 offset_left = 954.0
 offset_top = 67.0
@@ -130,12 +131,31 @@ vertical_alignment = 1
 autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="GraphButton" type="Button" parent="."]
-offset_top = 154.0
-offset_right = 302.0
-offset_bottom = 262.0
+[node name="bungeebutton" type="Sprite2D" parent="." unique_id=1137478592]
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("13_wi6ap")
+
+[node name="graphbutton" type="Sprite2D" parent="." unique_id=1175361712]
+position = Vector2(980, 540)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("14_d2e1j")
+
+[node name="GraphButton" type="Button" parent="." unique_id=785509669]
+offset_left = 4.0
+offset_top = 176.0
+offset_right = 321.0
+offset_bottom = 284.0
 theme_override_font_sizes/font_size = 71
-text = "GRAPH"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1v1x0")
+
+[node name="BungeeButton" type="Button" parent="." unique_id=1947327859]
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 376.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 71
+theme_override_styles/normal = SubResource("StyleBoxEmpty_51lk7")
 
 [connection signal="timeout" from="Line2D/Timer" to="Line2D" method="_on_timer_timeout"]
 [connection signal="mouse_entered" from="GraphButton" to="Line2D" method="set" binds= ["visible", true]]

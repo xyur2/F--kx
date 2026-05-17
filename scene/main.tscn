@@ -11,6 +11,11 @@
 [ext_resource type="Script" uid="uid://cusil41qmoska" path="res://script/transition.gd" id="6_4j5ol"]
 [ext_resource type="FontFile" uid="uid://dpmd0flr32atc" path="res://asset/font_bold.ttf" id="6_b5f6u"]
 [ext_resource type="AudioStream" uid="uid://vywsh4qlvdu8" path="res://audio/오프닝 브금 후보1.mp3" id="11_k65ib"]
+[ext_resource type="AudioStream" uid="uid://c5h4s5auxtn0d" path="res://audio/마우가.wav" id="12_jcbur"]
+[ext_resource type="AudioStream" uid="uid://cqoxmk3m5jrjq" path="res://audio/비명소리.mp3" id="13_smf0o"]
+[ext_resource type="AudioStream" uid="uid://bal1dtsrp7nia" path="res://audio/머리 감싸는 인간여자.wav" id="14_tv8i1"]
+[ext_resource type="AudioStream" uid="uid://daxb4infnkxqi" path="res://audio/울퉁불퉁.wav" id="15_0vlqb"]
+[ext_resource type="AudioStream" uid="uid://or5dujpc20u0" path="res://audio/뛰는사나에.wav" id="16_gjnwh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p1hux"]
 
@@ -42,7 +47,7 @@ position = Vector2(0, 6000)
 [node name="Bungee" parent="." unique_id=2071564401 instance=ExtResource("1_v0l8b")]
 position = Vector2(0, 2000)
 
-[node name="AnimatedSprite2D" parent="Bungee/Customer" index="0" unique_id=272378064]
+[node name="AnimatedSprite2D" parent="Bungee/Customer" parent_id_path=PackedInt32Array(2071564401, 1781362016) index="0" unique_id=272378064]
 script = null
 
 [node name="shouting" type="AudioStreamPlayer2D" parent="Bungee" unique_id=310777327]
@@ -88,6 +93,22 @@ script = ExtResource("6_4j5ol")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=848402077]
 stream = ExtResource("11_k65ib")
+parameters/looping = true
+
+[node name="mauga" type="AudioStreamPlayer" parent="." unique_id=357593820]
+stream = ExtResource("12_jcbur")
+
+[node name="screaming" type="AudioStreamPlayer" parent="." unique_id=1371559692]
+stream = ExtResource("13_smf0o")
+
+[node name="headwoman" type="AudioStreamPlayer" parent="." unique_id=1946332080]
+stream = ExtResource("14_tv8i1")
+
+[node name="badroad" type="AudioStreamPlayer" parent="." unique_id=682261456]
+stream = ExtResource("15_0vlqb")
+
+[node name="runman" type="AudioStreamPlayer" parent="." unique_id=1661047138]
+stream = ExtResource("16_gjnwh")
 
 [connection signal="boost" from="." to="Bungee/Line2D" method="_on_main_boost"]
 [connection signal="scream_val" from="Bungee/Line2D" to="." method="_on_line_2d_scream_val"]
