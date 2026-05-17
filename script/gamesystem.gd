@@ -89,13 +89,13 @@ func _ready():
 		main_scene()
 
 
-
-
 func final_ending(ending):
+	camera.offset = ending_pos
 	if ending == 1:
 		story_maker.play("3")
 	else:
-		story_maker.play("4") 
+		story_maker.play("4")
+	await transition.transition_out()
 
 func main_scene():
 	camera.offset = start_pos
