@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://daanmlo268yyd" path="res://scene/joke.tscn" id="4_brvut"]
 [ext_resource type="PackedScene" uid="uid://dniib04h7sq4u" path="res://scene/transition.tscn" id="5_0ha60"]
 [ext_resource type="PackedScene" uid="uid://b7jn4anbc3cj" path="res://scene/start.tscn" id="5_p1hux"]
+[ext_resource type="PackedScene" uid="uid://bb6sos20ekt5k" path="res://scene/story.tscn" id="5_tqoya"]
 [ext_resource type="Script" uid="uid://cusil41qmoska" path="res://script/transition.gd" id="6_4j5ol"]
 [ext_resource type="FontFile" uid="uid://dpmd0flr32atc" path="res://asset/font_bold.ttf" id="6_b5f6u"]
 
@@ -45,6 +46,9 @@ script = null
 
 [node name="Tower" parent="." unique_id=1349530916 instance=ExtResource("2_wp4xf")]
 script = null
+
+[node name="Story" parent="." unique_id=1669037373 instance=ExtResource("5_tqoya")]
+position = Vector2(0, 8000)
 
 [node name="Joke" parent="." unique_id=1538125623 instance=ExtResource("4_brvut")]
 position = Vector2(0, 2000)

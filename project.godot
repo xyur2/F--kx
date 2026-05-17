@@ -15,8 +15,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="F=-kx"
-run/main_scene="uid://30ajs4c20xfe"
-config/features=PackedStringArray("4.5", "Forward Plus")
+run/main_scene="uid://w83ojhr5p5mu"
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]

@@ -39,8 +39,8 @@ var fin
 var scream 
 var Day
 var ending
+var story_maker
 # Called when the node enters the scene tree for the first time.
-
 
 signal continued
 signal button_chosen
@@ -69,6 +69,7 @@ func _ready():
 	joke_me_animation = get_node("Joke/Me/AnimatedSprite2D")
 	bungee_customer = get_node("Bungee/Customer")
 	pointer = get_node("Bungee/BungeeBackground2")
+	story_maker = get_node("Story/AnimatedSprite2D")
 	
 	joke_scene.visible = false
 	transition = get_node("CanvasLayer/Transition")
@@ -79,13 +80,23 @@ func _ready():
 		main_scene()
 
 func final_ending(ending):
-	pass
+	if ending == 1:
+		story_maker.play("3")
+	else:
+		story_maker.play("4") 
 
 func main_scene():
 	camera.offset = start_pos
 	await continued
+	story_maker.play("1")
 	await transition.transition_in()  # 닫기
 	state = "ongame"
+	camera.offset = ending_pos
+	await transition.transition_out()
+	await continued
+	story_maker.play("2")
+	await continued
+	await transition.transition_in()
 	start_game()
 	
 func start_game():
@@ -101,14 +112,14 @@ func start_game():
 		cur.text=str(today.get_customer())
 		fin.text=str(today.get_goal_customer())
 		scream.text=str(today.get_scream())
-		await endday(yesterday.get_scream(), yesterday.get_customer())
+		await endday(i, yesterday.get_scream(), yesterday.get_customer())
 		ending = 2
 		if today.get_goal_customer() <= 0:
 			ending = 1
 			break
 	final_ending(ending)
 
-func endday(score, customer):
+func endday(date, score, customer):
 	camera.offset = dayend_pos
 	var final_score
 	var textbox = get_node("Dayend/Label")
@@ -137,7 +148,7 @@ func endday(score, customer):
 			"손님 응대에는 영 소질이 없나봐.."
 		]
 	ment = ment_list.pick_random()
-	var text = "오늘 손님 수 : " + str(customer) + "\n오늘의 점수 : " + str(snapped(final_score, 0.01)) + "점"+ "\n\n"+ment
+	var text = "Day "+str(date)+"\n\n오늘 손님 수 : " + str(customer) + "\n오늘의 점수 : " + str(snapped(final_score, 0.01)) + "점"+ "\n\n"+ment
 	textbox.text = text
 	await transition.transition_out()         # 닫기
 	await get_tree().create_timer(3.0).timeout
@@ -361,6 +372,8 @@ func _on_button_3_pressed() -> void:
 	emit_signal("button_chosen")
 
 func _on_bungee_button_pressed() -> void:
+	if Input.is_action_just_pressed("continue"):
+		return
 	jumped = true
 	emit_signal("bungee_continued")  # while 탈출
 	emit_signal("bungee")
