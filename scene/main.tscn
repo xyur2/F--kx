@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://w83ojhr5p5mu"]
+[gd_scene load_steps=21 format=3 uid="uid://w83ojhr5p5mu"]
 
 [ext_resource type="PackedScene" uid="uid://trxgahumbk60" path="res://scene/bungee.tscn" id="1_v0l8b"]
 [ext_resource type="Script" uid="uid://djovcydqarqog" path="res://script/gamesystem.gd" id="1_wp4xf"]
@@ -7,9 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://daanmlo268yyd" path="res://scene/joke.tscn" id="4_brvut"]
 [ext_resource type="PackedScene" uid="uid://dniib04h7sq4u" path="res://scene/transition.tscn" id="5_0ha60"]
 [ext_resource type="PackedScene" uid="uid://b7jn4anbc3cj" path="res://scene/start.tscn" id="5_p1hux"]
-[ext_resource type="PackedScene" uid="uid://bb6sos20ekt5k" path="res://scene/story.tscn" id="5_tqoya"]
+[ext_resource type="PackedScene" path="res://scene/story.tscn" id="5_tqoya"]
 [ext_resource type="Script" uid="uid://cusil41qmoska" path="res://script/transition.gd" id="6_4j5ol"]
 [ext_resource type="FontFile" uid="uid://dpmd0flr32atc" path="res://asset/font_bold.ttf" id="6_b5f6u"]
+[ext_resource type="AudioStream" uid="uid://vywsh4qlvdu8" path="res://audio/오프닝 브금 후보1.mp3" id="11_k65ib"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p1hux"]
 
@@ -29,28 +30,30 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2gmf"]
 
-[node name="Main" type="Node2D" unique_id=670661565]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_wp4xf")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=267539146]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(980, 540)
 
-[node name="Dayend" parent="." unique_id=314943591 instance=ExtResource("2_of57s")]
+[node name="Dayend" parent="." instance=ExtResource("2_of57s")]
 position = Vector2(0, 6000)
 
-[node name="Bungee" parent="." unique_id=424035712 instance=ExtResource("1_v0l8b")]
+[node name="Bungee" parent="." instance=ExtResource("1_v0l8b")]
 position = Vector2(0, 2000)
 
-[node name="AnimatedSprite2D" parent="Bungee/Customer" index="0" unique_id=272378064]
+[node name="AnimatedSprite2D" parent="Bungee/Customer" index="0"]
 script = null
 
-[node name="Tower" parent="." unique_id=1349530916 instance=ExtResource("2_wp4xf")]
+[node name="shouting" type="AudioStreamPlayer2D" parent="Bungee"]
+
+[node name="Tower" parent="." instance=ExtResource("2_wp4xf")]
 script = null
 
-[node name="Story" parent="." unique_id=1669037373 instance=ExtResource("5_tqoya")]
+[node name="Story" parent="." instance=ExtResource("5_tqoya")]
 position = Vector2(0, 8000)
 
-[node name="Joke" parent="." unique_id=1538125623 instance=ExtResource("4_brvut")]
+[node name="Joke" parent="." instance=ExtResource("4_brvut")]
 position = Vector2(0, 2000)
 
 [node name="Button" parent="Joke" index="1"]
@@ -73,15 +76,18 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_b5f6u")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_hybxs")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_v2gmf")
 
-[node name="Start" parent="." unique_id=531298035 instance=ExtResource("5_p1hux")]
+[node name="Start" parent="." instance=ExtResource("5_p1hux")]
 position = Vector2(0, 4000)
 scale = Vector2(1, 1)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1049936425]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Transition" parent="CanvasLayer" unique_id=1486940847 instance=ExtResource("5_0ha60")]
+[node name="Transition" parent="CanvasLayer" instance=ExtResource("5_0ha60")]
 mouse_filter = 2
 script = ExtResource("6_4j5ol")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_k65ib")
 
 [connection signal="boost" from="." to="Bungee/Line2D" method="_on_main_boost"]
 [connection signal="scream_val" from="Bungee/Line2D" to="." method="_on_line_2d_scream_val"]

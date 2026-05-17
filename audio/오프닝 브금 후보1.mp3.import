@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/오프닝 브금 후보1.mp3-555c70a86e8cef02
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

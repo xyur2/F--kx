@@ -40,6 +40,10 @@ var scream
 var Day
 var ending
 var story_maker
+var shouting
+var ingame_bgm = preload("res://audio/오프닝 브금 후보1.mp3")
+var bgm_player
+
 # Called when the node enters the scene tree for the first time.
 
 signal continued
@@ -73,11 +77,19 @@ func _ready():
 	
 	joke_scene.visible = false
 	transition = get_node("CanvasLayer/Transition")
+	shouting = get_node("Bungee/shouting")
+	bgm_player = get_node("AudioStreamPlayer")
+	if bgm_player:
+		bgm_player.play()
+	
 	print("씬 불러오기 성공")
 
 	# _process 대신 _ready에서 시작
 	if state == "ready":
 		main_scene()
+
+
+
 
 func final_ending(ending):
 	if ending == 1:
@@ -161,6 +173,7 @@ func day_process():
 	var line_num_now
 
 	print("손님 접대 시작")
+	bgm_player.stop()
 	customer_num = today.get_goal_customer()
 	for i in range(customer_num):
 		customer = Customer.new()
@@ -277,6 +290,7 @@ func day_process():
 		jumped = false
 		print("손님 접대 완료")
 		is_bungee = false
+		shouting.play()
 		await transition.transition_in()  # 닫기
 		bungee_customer.position = pos
 		camera.offset = bungee_pos
