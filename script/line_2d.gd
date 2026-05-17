@@ -83,7 +83,7 @@ func _on_timer_timeout():
 	# Y좌표 변경x
 	var offset = Vector2(spacing,cur_boost_value)
 	# X좌표 구간 설정
-	var new_pos = last_position + offset + Vector2(0, randf_range(-50, +25))
+	var new_pos = last_position + offset - Vector2(0, randf_range(-50, +25))
 	
 	#버튼 상호작용
 	if cur_boost_value == max_boost_value:
